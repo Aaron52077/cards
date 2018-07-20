@@ -1,0 +1,26 @@
+<!--pages/main/activity_detail/detail.wxml-->
+<import src="../../../wxParse/wxParse.wxml" />
+<wxs module="filter" src="../../../utils/filter.wxs"></wxs>
+
+<view class="container detail">
+    <view class="title">
+        <view class="title-top">{{Detail.name}}</view>
+        <view class="title-bottom">
+            <span>时间：{{Detail.starttime}} - {{Detail.endtime}}</span>
+            <span>浏览：{{Detail.hits}}</span>
+        </view>
+    </view>
+    <view class="detail-html">
+        <block wx:if="{{Detail.arr_atlas!=null}}">
+            <view wx:for="{{Detail.arr_atlas}}" wx:key="">
+                <image src="{{item}}" class="wuli-activity__bd" mode="widthFix" />
+            </view>
+        </block>
+        <block wx:if="{{Detail.info!=null}}">
+            <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+         </block>
+    </view>
+</view>
+<view class="sign">
+    <navigator url="/pages/main/activity_sign/sign?title={{Detail.name}}&id={{Detail.id}}" hover-class="none">报名参加</navigator>
+</view>

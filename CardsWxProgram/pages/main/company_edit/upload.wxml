@@ -1,0 +1,42 @@
+<!--pages/main/company_edit/upload.wxml-->
+<import src="/components/field/index.wxml" />
+
+<view class="card-edit container">
+    <form bindsubmit="formSubmit" bindreset="formReset">
+        <view class="card-edit__hd wuli-panel">
+            <view class="wuli-cell wuli-field">
+                <view class="wuli-cell__hd wuli-field__title">公司</view>
+                <input type="text" placeholder="请输入公司名称" placeholder-style="color:#c2c2c2" class="wuli-field__input wuli-cell__bd" />
+                <view class="wuli-cell__ft">
+                    <button class="wuli-btn wuli-btn__mini wuli-btn__danger" catchtap="goCersion">加入企业版</button>
+                </view>
+            </view>
+            <view class="wuli-cell wuli-field">
+                <view class="wuli-cell__hd wuli-field__title">地址</view>
+                <block wx:if="{{hasLocation === false}}">
+                    <view style="color:#c2c2c2" class="wuli-field__input wuli-cell__bd" bindtap="chooseLocation">公司地址</view>
+                </block>
+                <block wx:if="{{hasLocation === true}}">
+                    <view class="wuli-cell__bd wuli-field__input" catchtap="chooseLocation">{{companyAddress}}</view>
+                </block>
+            </view>
+            <template is="wuli-field" data="{{ ...tel, value:telphone }}"></template>
+            <view class="wuli-cell wuli-field card-edit__fd-title">
+                <view class="wuli-cell__hd wuli-field__title">LOGO</view>
+                <view class="wuli-field__input wuli-cell__bd">
+                    <block wx:if="{{companylogo}}">
+                        <image class="card-edit__fd-icon" src="{{companylogo}}" data-cmd="logo" mode="aspectFill" bindtap="chooseImage"></image>
+                    </block>
+                    <block wx:else>
+                        <image class="card-edit__fd-icon" src="/image/upload_btn.png" bindtap="chooseImage" data-cmd="logo" mode="aspectFit"></image>
+                    </block>
+    
+                    <view class="card-edit__fd-desc">*请上传.png</view>
+                </view>
+            </view>
+        </view>
+        <view class="wuli-btns wuli-btn__fixed">
+            <button class="wuli-btn wuli-btn__primary" formType="submit">确认保存</button>
+        </view>
+    </form>
+</view>

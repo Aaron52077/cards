@@ -1,0 +1,21 @@
+<!--pages/main/comment_edit/upload.wxml-->
+<view class="container wuli-comment">
+    <form bindsubmit="formSubmit">
+        <view class="wuli-panel">
+            <view class="wuli-cell wuli-field">
+                <textarea class="wuli-field__input wuli-cell__bd" name="content" placeholder='{{placehoder}}' minlength="{{min}}" maxlength="{{max}}" bindinput="textareaHanle"></textarea>
+                <text class="wuli-comment__num">{{ totalNum | 0 }}/{{max}}</text>  
+                <text class="wuli-comment__desc">{{placeholderText}}</text>  
+            </view>
+        </view>
+        <view class="wuli-panel wuli-comment__tags">
+            <block wx:for="{{tagsList}}" wx:key="">
+                <view class="wuli-comment__tag {{ tagIndex === index ? 'is-active':'' }}"  data-id="{{index}}" bindtap="tagHanle">{{item.name}}</view>
+            </block>
+        </view>
+        <!-- 固定栏 -->
+        <view class="wuli-btns wuli-btn__fixed">
+            <button class="wuli-btn wuli-btn__primary" formType="submit">{{submitText}}</button>
+        </view>
+    </form>
+</view>

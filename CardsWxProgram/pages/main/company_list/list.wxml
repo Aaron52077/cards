@@ -1,0 +1,73 @@
+<!--pages/main/company_list/list.wxml-->
+<wxs module="filter" src="../../../utils/filter.wxs"></wxs>
+
+<view class="container">
+    <!-- <view class="wuli-panel__bg">
+        <view class="wuli-search wuli-panel">
+            <i class="iconfont icon-search"></i>
+            <input class="wuli-search__input" placeholder="输入公司名称" confirm-type="search" bindconfirm="bindconfirm" />
+        </view>
+    </view> -->
+    <block wx:if="{{companyId==0}}">
+        <view class="wuli-panel">
+            <view class="wuli-loadmore">
+                <view class="wuli-loadmore__icon">
+                    <i class="iconfont icon-wushuju"></i>
+                </view>
+                <view class="wuli-loadmore__tips">暂无企业认证信息</view>
+            </view>
+        </view>
+    </block>
+    <block wx:else>
+        <view class="wuli-panel wuli-companys">
+            <view class="wuli-companys__item wuli-panel">
+                <view class="wuli-companys__hd">
+                    <view class="wuli-companys__hd--lt">
+                        <image class="wuli-companys__hd--logo" src="{{filter.formatUrl(companyInfo.logo)}}" mode="aspectFit"></image>
+                    </view>
+                    <view class="wuli-companys__hd--rt">
+                        <view class="wuli-companys__hd--info">
+                            <view class="wuli-companys__hd--title">{{companyInfo.name}}</view>
+                        </view>
+                        <view class="wuli-companys__hd--tags">
+                            <view class="wuli-companys__hd--tag">蜂巢认证装企</view>
+                            <view class="wuli-companys__hd--tag">蜂巢SAAS采集数据</view>
+                        </view>
+                    </view>
+                </view>
+                <view class="wuli-companys__bd">
+                    <view class="wuli-companys__bd--inner">
+                        <view class="inner-tags">
+                            <view class="inner-tag">设计师数量：</view>
+                            <view class="inner-number">{{companyInfo.desCount}}</view>
+                        </view>
+                        <view class="inner-tags inner-center">
+                            <view class="inner-tag">工长数量：</view>
+                            <view class="inner-number">{{companyInfo.pmCount}}</view>
+                        </view>
+                        <view class="inner-tags">
+                            <view class="inner-tag">服务业主：</view>
+                            <view class="inner-number">{{companyInfo.CusCount}}</view>
+                        </view>
+                    </view>
+                </view>
+                <view class="wuli-companys__fd">
+                    <view class="wuli-companys__fd--title">{{companyInfo.address}}</view>
+                    <view class="wuli-companys__fd--map">
+                        <map class="setion-map" latitude="{{companyInfo.latitude}}" longitude="{{companyInfo.longitude}}" markers="{{markers}}"></map>
+                    </view>
+                    <view class="wuli-companys__fd--menu">
+                        <view class="menu-item" bindtap="Visitingline" data-latitude="{{companyInfo.latitude}}" data-longitude="{{companyInfo.longitude}}" data-name="{{companyInfo.name}}" data-address="{{companyInfo.address}}">
+                            <i class="iconfont icon-daohang"></i>导航到这里</view>
+                        <view class="menu-item" bindtap="callPhone" data-phone="{{companyInfo.tel}}">
+                            <i class="iconfont icon-dianhua"></i>联系电话</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </block>
+
+    <!-- <view class="wuli-btns wuli-btn__fixed">
+        <button class="wuli-btn wuli-btn__primary" bindtap='handleRemoveCompany'>解除企业关联</button>
+    </view> -->
+</view>

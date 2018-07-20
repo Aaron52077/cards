@@ -1,0 +1,8 @@
+@import '../../start/add/add.wxss';
+
+.card-edit__bd textarea {
+    height: 212rpx;
+}
+.card-edit__bd .wuli-cell:last-child {
+    align-items: flex-start;
+}

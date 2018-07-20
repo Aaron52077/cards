@@ -1,0 +1,21 @@
+<!--pages/main/rank_version/version.wxml-->
+<view class="container">
+    <view class="wuli-version">
+        <view class="wuli-version__wrapper">
+            <view class="wuli-version__hd" bindtap="colseHanle">
+                <view class="wuli-version__hd--colse">
+                    <i class="iconfont icon-cha"></i>
+                </view>
+                <image class="wuli-version__hd--img" src="/image/rank_version.jpg" mode="aspectFill"></image>
+            </view>
+            <view class="wuli-version__bd">
+                <view class="wuli-version__title">企业版介绍</view>
+                <view class="wuli-version__item" wx:for="{{configData}}" wx:key="">
+                    <i class="iconfont icon-choosehandle"></i><text>{{item}}</text>
+                </view>
+            </view>
+            <button class="wuli-btn wuli-version__fd" open-type="contact" session-from="weapp">联系客服</button>
+            <!-- <view class="wuli-version__fd" bindtap="goVersion">加入企业版</view>   -->
+        </view>
+    </view>
+</view>

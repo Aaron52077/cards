@@ -1,0 +1,65 @@
+/* pages/main/activity_list/list.wxss */
+
+.container {
+    background: #f4f4f4;
+}
+
+.wuli-activity {
+    padding: 0 10px;
+}
+
+.wuli-activity__item {
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    width: 100%;
+    height: 186px;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+.wuli-activity__item--img {
+    width: 100%;
+    height: 142px;
+}
+
+.wuli-activity__item--inner {
+    display: flex;
+    align-items: center;
+    padding: 5px 0;
+    line-height: 1.4;
+}
+
+.wuli-activity__item--title {
+    flex: 1;
+    padding-left: 15px;
+    color: #333;
+    font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.desc-menu {
+    width: 50px;
+    text-align: center;
+}
+
+.desc-hits, .desc-menu {
+    display: inline-block;
+    font-size: 12px;
+    color: #cfcfcf;
+}
+
+.desc-hits .iconfont, .desc-menu .iconfont {
+    font-size: 14px;
+}
+
+.wuli-activity__edit {
+    padding: 0 15px;
+    height: 40px;
+    line-height: 40px;
+    text-align: right;
+    font-size: 14px;
+    color: #000;
+    font-weight: bolder;
+}

@@ -1,0 +1,24 @@
+@import '_var';
+@import '_mixins';
+
+page {
+    background-color: #ebecf2;
+}
+.indicator {
+    margin: 55rpx auto 25rpx;
+    height: 16rpx;
+    .display-flex();
+    align-items: center;
+    justify-content: center;
+    &-dots {
+        width: 16rpx;
+        height: 16rpx;
+        margin: 0 5rpx;
+        background-color: #cdced7;
+        .border-radius(50%);
+        &.is-active {
+            background-color: #f9faff;
+            box-shadow: inset 0 -2px 5px rgba(0,0,0,.1);
+        }
+    }
+}

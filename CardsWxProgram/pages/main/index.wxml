@@ -1,0 +1,224 @@
+<!--index.wxml-->
+<import src="/components/template/template.wxml" />
+<wxs module="filter" src="../../utils/filter.wxs"></wxs>
+
+<view class="container main">
+    <scroll-view class="{{!ui.tStart? 'fade-in__animate': ''}}" style="width: {{ui.windowWidth}}px;height: {{windowHeight-ui.offsetLeft}}px;" bindtouchstart="handlerStart" catchtouchmove="handlerMove" bindtouchcancel="handlerCancel" bindtouchend="handlerEnd" bindtap="handlerPageTap">
+        <image class="main-pos__img {{!ui.tStart? 'fade-in__animate': ''}}" style="height: {{windowHeight-ui.offsetLeft}}px" src="{{filter.formatUrl(curuserInfo.cardphotoMax)}}" mode="aspectFill"></image>
+        <!-- 模拟高斯模糊背景 -->
+        <image src="/image/blur_bg.png" class="main-bg"></image>
+        <view class="main-content">
+            <view class="main-content__hd">
+                <view class="main-content__hd-title">
+                    <text>{{curuserInfo.name}}</text>
+                    <block wx:if="{{curuserInfo.sex == 1}}">
+                        <i class="iconfont icon-nan"></i>
+                    </block>
+                    <block wx:else>
+                        <i class="iconfont icon-nv"></i>
+                    </block>
+                </view>
+                <view class="main-content__hd-desc">{{curuserInfo.position}}</view>
+            </view>
+            <view class="main-content__bd">
+                <view class="main-content__bd-info">{{curuserInfo.companyname}}</view>
+                <view class="main-content__bd-inner wuli-ellipsis__l3">{{curuserInfo.introduction}}</view>
+            </view>
+            <view class="main-content__fd">
+                <view class="main-content__fd--wrapper">
+                    <view class="flex-item">
+                        <view class="flex-item__num">{{curuserInfo.popularity}}</view>
+                        <view class="flex-item__title">人气</view>
+                    </view>
+                    <view class="flex-item">
+                        <view class="flex-item__num">{{curuserInfo.likenum}}</view>
+                        <view class="flex-item__title">点赞</view>
+                    </view>
+                    <view class="flex-item">
+                        <view class="flex-item__num">{{curuserInfo.forwardingnum}}</view>
+                        <view class="flex-item__title">转发</view>
+                    </view>
+                </view>
+                <view class="main-content__btn" bindtap="toggleMenuPopup" wx:if="{{curuserInfo.id==userInfo.id}}">
+                    <i class="iconfont icon-more"></i>
+                </view>
+            </view>
+            <!-- 点赞 -->
+            <view class="wuli-zan" bindtap="handelLike" wx:if="{{curuid==curuserInfo.id}}">
+                <i class="iconfont icon-dianzan"></i>
+            </view>
+        </view>
+    </scroll-view>
+    <!-- 名片发送到个体显示层 -->
+    <view class="main-fixed" hidden="{{ hidden }}" animation="{{ animationData }}" catchtap="btnmycrad">
+        <i class="iconfont icon-caozuo"></i>我的名片
+    </view>
+    <view class="wuli-main_bd">
+     <form bindsubmit="formAddPhoneContactSubmit" report-submit='true' >
+        <view class="wuli-panel wuli-main_bd--info">
+            <view class="info-cell" bindtap='callPhone' data-phone="{{curuserInfo.phone}}">
+                <view class="info-cell__hd">手机</view>
+                <view class="info-cell__bd">{{curuserInfo.phone}}</view>
+                <view class="info-cell__fd">
+                    <i class="iconfont icon-web-icon-"></i>
+                </view>
+            </view>
+            <view class="info-cell">
+                <view class="info-cell__hd">微信</view>
+                <view class="info-cell__bd">{{curuserInfo.wechatNum}}</view>
+                <view class="info-cell__fd" bindtap="clone">
+                    <i class="iconfont icon-weixin"></i>
+                </view>
+            </view>
+            <view class="wuli-main_fd">
+              <button class="wuli-btn wuli-btn__primary" formType="submit" form-type="submit">同步至通讯录</button>
+            </view>
+        </view>
+      </form>
+        <!--图集-->
+        <template is="wuli-atlas" data="{{ Ablums:userIndexInfo.Ablums,curuid }}"></template>
+
+        <!--在建工地-->
+        <template is="wuli-sites" data="{{Sites:userIndexInfo.Sites,curuid}}" />
+
+        <!--案例-->
+        <template is="wuli-cases" data="{{Cases:userIndexInfo.Cases,curuid}}"></template>
+
+        <!-- 评论 -->
+        <view class="wuli-panel wuli-template">
+            <navigator class="wuli-cell wuli-cell__access" url="/pages/main/comment_list/list?curuid={{curuid}}" hover-class="none">
+                <view class="wuli-cell__icon iconfont icon-pinglun"></view>
+                <view class="wuli-cell__bd">印象评论({{userIndexInfo.CommentCount}})</view>
+                <view class="wuli-cell__ft">全部</view>
+            </navigator>
+            <block wx:if="{{!userIndexInfo.HotComments.length}}">
+                <view class="wuli-panel">
+                    <view class="wuli-loadmore">
+                        <view class="wuli-loadmore__icon">
+                            <i class="iconfont icon-wushuju"></i>
+                        </view>
+                        <view class="wuli-loadmore__tips">暂无相关评论</view>
+                    </view>
+                </view>
+            </block>
+            <block wx:else>
+                <view class="wuli-comments__tags"> 
+                     <view class="wuli-comments__tag" wx:for="{{TagList}}" wx:key="index">{{item.tags}}({{item.num}})</view> 
+                </view>
+                <view class="wuli-comments__item" wx:for="{{userIndexInfo.HotComments}}" wx:for-item="item" wx:key="index">
+                    <view class="wuli-comments__bd">
+                        <view class="wuli-comments__bd--info">
+                            <image class="wuli-comments__bd--avater" src="{{filter.formatUrl(item.uavatar)}}" mode="aspectFill"></image>
+                            <view class="wuli-comments__bd--inner">
+                                <view class="wuli-comments__item--hd">
+                                    <view class="wuli-comments__item--title">{{item.uname}}</view>
+                                </view>
+                                <view class="wuli-comments__item--bd">{{item.content}}</view>
+                            </view>
+                        </view>
+                        <view class="wuli-comments__item--fd">
+                            <view class="wuli-comments__item--inner">
+                                <text class="wuli-comments__item--time">{{item.addtime}}</text>
+                            </view>
+                            <view class="wuli-comments__item--reply">
+                                <i class="iconfont icon-huifu1" data-index="{{index}}" bindtap="commentHandle"></i>
+                                <!-- layer comment -->
+                                <view class="wuli-comments wuli-popup wuli-popup__right {{ commentPopup==index ? 'wuli-popup__show' : ''}}">
+                                    <view class="wuli-popup__mask" data-index="{{index}}" catchtap="commentHandle"></view>
+                                    <view class="wuli-popup__container">
+                                        <navigator class="item-btn" url='/pages/main/comment_edit/upload?id={{item.id}}&name={{item.uname}}&curuid={{curuid}}' hover-class='none'>
+                                            <i class="iconfont icon-pinglun1"></i>回复
+                                        </navigator>
+                                        <view class="item-btn" bindtap='handleCommentLike' data-id='{{item.id}}' data-index="{{index}}">
+                                            <i class="iconfont icon-dianzan" ></i>点赞
+                                        </view>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                        <view class="wuli-comments__reply" wx:if="{{item.SubCommentLike.length!=0 || item.SubCommentList.length!=0}}">
+                            <view class="wuli-comments__reply--total" wx:if="{{item.SubCommentLike.length!=0}}">
+                                <view class="reply-person">
+                                    <block wx:for="{{item.SubCommentLike}}" wx:for-item="p" wx:key="{{p.id}}">
+                                        {{p.uname}},
+                                    </block>
+                                </view>
+                                <view class="reply-total">等{{item.SubCommentLike.length}}个人点赞</view>
+                            </view>
+                            <view class="wuli-comments__reply--item" wx:for="{{item.SubCommentList}}" wx:for-item="item1" wx:key="{{item1.id}}">
+                                <text class="reply-name">{{item1.uname}}：</text>
+                                <text class="reply-info">{{item1.content}}</text>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="wuli-comments__fd"></view>
+                </view>
+            </block>
+
+            <!--wx:if="{{curuserInfo.id!=userInfo.id}}"  -->
+            <navigator class="wuli-comments__btns wuli-panel" url="/pages/main/comment_edit/upload?curuid={{curuid}}" wx:if="{{curuserInfo.id!=userInfo.id}}"
+                hover-class="none">
+                <botton class="wuli-btn wuli-btn__large">
+                    <i class="iconfont icon-bianji"></i>我要评论</botton>
+            </navigator>
+        </view>
+
+        <!-- 公司信息 -->
+        <template is="wuli-companys" wx-if="{{userIndexInfo.CompanyInfo!=null}}" data="{{ ...userIndexInfo.CompanyInfo,markers }}"></template>
+
+        <!-- 活动 -->
+        <view wx:if="{{userIndexInfo.Activitys.length>0}}" >
+            <swiper class="wuli-activity wuli-panel" indicator-dots autoplay indicator-active-color="#ffe7ff">
+                    <block wx:for="{{userIndexInfo.Activitys}}" wx:key="">
+                        <swiper-item>
+                            <navigator url="/pages/main/activity_detail/detail?id={{item.id}}&type={{item.type}}" hover-class="none">
+                                <image src="{{filter.formatImg(item.cover)}}" class="wuli-activity__bd" mode="aspectFill" />
+                            </navigator>
+                        </swiper-item>
+                    </block>
+            </swiper>
+        </view>
+
+        <view class="wuli-helper">
+            <view class="wuli-helper__tips">蜂巢SAAS f8.cn技术支持</view>
+            <view class="wuli-helper__tips">联系电话：028-69902443</view>
+        </view>
+    </view>
+</view>
+<!-- layer -->
+<view class="menu-popup wuli-popup wuli-popup__bottom {{ showBottomPopup ? 'wuli-popup__show' : ''}}">
+    <view class="wuli-popup__mask" capture-catch:touchstart="{{false}}"></view>
+    <view class="wuli-popup__container" catchtap="toggleMenuPopup">
+        <view class="menu-popup__bd">
+            <view class="menu-popup__bd--warpper">
+                <block wx:for="{{config.menu}}" wx:for-item="item" wx:key="">
+                    <navigator class="menu-popup__item" url="{{item.url}}" hover-class="none">
+                        <view class="item-circle {{item.class}}">
+                            <i class="iconfont {{item.icon}}"></i>
+                        </view>
+                        <view class="item-title">{{item.title}}</view>
+                    </navigator>
+                </block>
+            </view>
+        </view>
+        <view class="menu-popup__fd">
+            <i class="iconfont icon-cha" catchtap="toggleMenuPopup"></i>
+        </view>
+    </view>
+</view>
+<!-- guide layer 引导 -->
+<view class="guide-popup wuli-popup {{ guideFalg ? 'wuli-popup__show' : ''}}">
+    <view class="wuli-popup__mask" catchtap="guideHandle"></view>
+    <view class="wuli-popup__container" bindtap="guideHandle">
+        <view class="guide-popup__bd">
+            <i class="iconfont icon-huadong"></i>
+            <view class="guide-inner">
+                <view>下滑可以查看</view>
+                <view>更多内容</view>
+            </view>
+        </view>
+        <view class="wuli-btns">
+            <botton class="wuli-btn wuli-btn__danger">我知道了</botton>
+        </view>
+    </view>
+</view>

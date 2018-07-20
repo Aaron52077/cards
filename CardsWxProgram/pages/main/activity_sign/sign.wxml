@@ -1,0 +1,29 @@
+<!--pages/main/activity_sign/sign.wxml-->
+<!-- banner -->
+<image src="/image/quoted.jpg" mode="aspectFill" class="cover" />
+<!-- input-group -->
+<view class="input-group">
+    <form class="form-invite" bindsubmit="formSubmit" report-submit='true'>
+        <view class="input-top">
+            <view class="input-item">
+                <input placeholder="请输入您的姓名" name="name" value="{{formData.name}}" />
+            </view>
+            <view class="input-item">
+                <input placeholder="请输入您的手机号" name="tel" value="{{formData.tel}}" />
+            </view>
+            <view class="input-item">
+                <input placeholder="请输入您的房屋面积" name="area" value="{{formData.area}}" />
+                <span>㎡</span>
+            </view>
+            <view class="input-item">
+                <input placeholder="哪个楼盘" name="property" value="{{formData.property}}" />
+            </view>
+        </view>
+        <view class="button-top">
+            #
+            <span>我们将誓死保护您的个人信息不被泄露</span>#
+        </view>
+        <button formType="submit" form-type="submit" type="default">提交</button>
+    </form>
+    <view class="techology"> 蜂巢SAAS技术支持</view>
+</view>

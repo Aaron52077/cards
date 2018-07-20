@@ -1,0 +1,78 @@
+
+<import src="/components/field/index.wxml" />
+<view class="wuli-upload container">
+    <form bindsubmit="formSubmit" bindreset="formReset">
+        <view class="wuli-panel">
+            <template is="wuli-field" data="{{ ...config.form.name, value:formData.name }}"></template>
+            <template is="wuli-field" data="{{ ...config.form.area, value:formData.area }}"></template>
+
+            <view class="wuli-cell wuli-cell__access">
+                <view class="wuli-cell__hd wuli-field__title">风格</view>
+                <picker class="wuli-cell__bd" bindchange="bindSelectChange" data-type='style' value="{{styleIndex}}" range-key='name' range="{{filter_style}}">
+                    {{filter_style[styleIndex].name}}
+                </picker>  
+                <view class="wuli-cell__ft"></view>
+            </view>
+            <view class="wuli-cell wuli-cell__access">
+                <view class="wuli-cell__hd wuli-field__title">户型</view>
+                <picker class="wuli-cell__bd" bindchange="bindSelectChange" data-type='unit' value="{{unitIndex}}" range-key='name' range="{{filter_unit}}">
+                        {{filter_unit[unitIndex].name}}
+                </picker>  
+                <view class="wuli-cell__ft"></view>
+            </view>
+             <view class="wuli-cell wuli-field" bindtap="chooseLocation">
+                <view class="wuli-cell__hd wuli-field__title">地址</view>
+                <block wx:if="{{hasLocation === false}}">
+                    <view style="color:#c2c2c2" class="wuli-field__input wuli-cell__bd" >{{formData.address}}</view>
+                </block>
+                <block wx:if="{{hasLocation === true}}">
+                    <view class="wuli-cell__bd wuli-field__input" catchtap="chooseLocation">{{formData.address}}</view>
+                </block>
+                <view class="wuli-cell__ft"></view>
+            </view>
+        </view>
+        <view class="wuli-panel wuli-upload__bd">
+            <template is="wuli-field" data="{{ ...config.form.price, value:formData.price }}"></template>
+            <!-- <view class="wuli-cell">
+                <view class="wuli-cell__bd">参与人员</view>
+            </view>  -->
+        </view>
+        <!-- <view class="wuli-upload__person">
+            <view class="wuli-upload__person--item">
+                <view class="wuli-upload__person--img">
+                    <image class="wuli-upload__person--avater" src="/image/img_01.jpg" mode="aspectFill"></image>
+                </view>
+                <view class="wuli-upload__person--desc">设计师</view>   
+            </view>
+            <view class="wuli-upload__person--item">
+                <view class="wuli-upload__person--img">
+                    <image class="wuli-upload__person--avater" src="/image/upload_btn_add.png" mode="aspectFit"></image>
+                </view>
+                <view class="wuli-upload__person--desc">工长</view>     
+            </view>
+            <view class="wuli-upload__person--item">
+                <view class="wuli-upload__person--img">
+                    <image class="wuli-upload__person--avater" src="/image/upload_btn_add.png" mode="aspectFit"></image>
+                </view> 
+                <view class="wuli-upload__person--desc">销售</view>    
+            </view>
+        </view> -->
+        <view class="wuli-panel wuli-upload__fd">
+            <template is="wuli-field" id="info" data="{{ ...config.form.info, value:formData.info }}" ></template>
+        </view>
+       <view class="wuli-panel wuli-upload__ft">
+            <view class="wuli-upload__item" wx:for="{{arrayAltas}}" wx:key="" >
+                <view class="wuli-upload__item--del" bindtap="delHandle" data-index="{{index}}">
+                    <i class="iconfont icon-cha"></i> 
+                </view>
+                <image class="wuli-upload__item--img" src="{{item}}" mode="aspectFill"></image>
+            </view>
+            <view class="wuli-upload__item">
+                <image class="wuli-upload__item--img" bindtap='choseImage' src="/image/upload_btn.png"  mode="aspectFit"></image>
+            </view>
+       </view>
+        <view class="wuli-btns wuli-upload__fd">
+            <button class="wuli-btn wuli-btn__info {{show?'wuli-btn__primary':''}}" formType="submit">确认发布</button>
+        </view>
+    </form>
+</view>

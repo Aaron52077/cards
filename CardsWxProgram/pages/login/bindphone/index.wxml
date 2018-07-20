@@ -1,0 +1,30 @@
+<!--pages/login/bindphone/index.wxml-->
+<view class="container wuli-login">
+    <view class="wuli-login__wrapper">
+        <view class="wuli-login__hd">
+            <view class="wuli-login__title">绑定手机号</view>
+        </view>
+        <view class="wuli-login__bd">
+             <form bindsubmit="formSubmit" bindreset="formReset">
+                    <view class="wuli-input__item wuli-field">
+                        <input type="number" placeholder="手机号码" maxlength="11" name="phone" placeholder-class="wuli-field__placeholder" class="wuli-field__input wuli-cell__bd" bindinput='handlePhonechage' />
+                    </view>
+                    <view class="wuli-input__item wuli-field">
+                        <input type="number" placeholder="验证码" maxlength="6" name="code" placeholder-class="wuli-field__placeholder" class="wuli-field__input wuli-cell__bd" />
+                        <view class="wuli-cell__ft">
+                            <button class="wuli-btn wuli-btn__mini wuli-btn__primary" disabled='{{disabled}}' bindtap='handleGetCode'>                                {{codemsg}}
+                            </button>
+                        </view>
+                    </view>
+                    <view class="wuli-login__bd--btn">
+                        <button class="wuli-btn wuli-btn__primary" formType="submit">立即绑定</button>
+                    </view>
+                </form>
+        </view>
+        <view class="wuli-helper wuli-login__fd">
+          <button class="wuli-helper__tips" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">
+           获取微信绑定的手机号
+          </button>
+        </view>
+    </view>
+</view>

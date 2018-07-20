@@ -1,0 +1,419 @@
+@import '../common/_var';
+@import '../common/_mixins';
+@import '../common/_field';
+
+page {
+    background-color: #f4f4f4;
+}
+@--color-img: #efefef;
+.wuli-panel__bg {
+    padding: 15px;
+    background-color: @--color-white;
+}
+.wuli-search {
+    position: relative;
+    height: 76rpx;
+    background-color: @--color-img;
+    .border-radius(2px);
+    &__input {
+        padding-left: 72rpx;
+        margin-top: 12rpx;
+        font-size: @--size-base;
+    }
+    .iconfont {
+        position: absolute;
+        left: 24rpx;
+        top: 18rpx;
+        font-size: @--size-base + 4;
+        color: #b5b5b5;
+    }
+}
+
+// 公司
+// .wuli-companys {
+//     box-sizing: border-box;
+    
+//     &__hd {
+//         padding: 15px;
+//         .display-flex();
+//         align-items: center;
+//         &--lt {
+//             .display-flex();
+//             align-items: center;
+//             justify-content: center;
+//             width: 40px;
+//             height: 40px;
+//             border: 1px solid #e2e2e2;
+//             .border-radius(7px);
+//         }
+//         &--logo {
+//             width: 25px;
+//             height: 25px;
+//         }
+//         &--rt {
+//             margin-left: 10px;
+//             .box-flex(1);
+//         }
+//         &--info {
+            
+//         }
+//         &--entry {
+//             float: right;
+//             width: 62px;
+//             height: 20px;
+//             line-height: 20px;
+//             font-size: @--size-base - 2;
+//             color: @--color-white;
+//             text-align: center;
+//             .linear-gradient(right, #ff8b00, #ff5500);
+//             .border-radius(10px);
+//         }
+//         &--title {
+//             margin-right: 64px;
+//             font-size: @--size-base;
+//             color: #282828;
+//             font-weight: bolder;
+//         }
+//         &--tags {
+//             margin-top: 3px;
+//             width: 100%;
+//         }
+//         &--tag {
+//             float: left;
+//             position: relative;
+//             box-sizing: border-box;
+//             line-height: 16px;
+//             padding: 0 5px;
+//             .border-radius(8px);
+//             font-size: @--size-base - 3;
+//             background: #ff002d;
+//             text-align: center;
+//             color: @--color-white;
+//             & + & {
+//                 margin-left: 5px;
+//                 background: #fe7532;
+//             }
+//         }
+//     }
+//     &__item {
+//         border-top: 1px solid #f4f4f4;
+//     }
+//     &__bd {
+//         position: relative;
+//         padding: 0 15px;
+//         &::after {
+//             content: "";
+//             position: absolute;
+//             left: 0;
+//             right: 0;
+//             width: 200%;
+//             height: 200%;
+//             transform: scale(.5);
+//             transform-origin: 0 0;
+//             pointer-events: none;
+//             box-sizing: border-box;
+//             border: 0 solid #f4f4f4;
+//             border-bottom-width: 1px;
+//         }
+//         &--inner {
+//             .display-flex();
+//             align-items: center;
+//         }
+//         .inner-tags {
+//             font-size: @--size-base - 2;
+//         }
+//         .inner-tag {
+//             display: inline-block;
+//             color: #989898;
+//         }
+//         .inner-number {
+//             display: inline-block;
+//             color: #ff5b00;
+//         }
+//         .inner-center {
+//             .box-flex(1);
+//             text-align: center;
+//         }
+//     }
+//     &__fd {
+//         margin-top: 15px;
+//         &--title {
+//             padding: 10px 15px;
+//             color: #333333;
+//             font-size: @--size-base;
+//             .text-overflow();
+//         }
+//         &--map {
+//             box-sizing: border-box;
+//             height: 96px;
+//             .setion-map {
+//                 width: 100%;
+//                 height: 96px;
+//             }
+//         }
+//         &--menu {
+//             height: 40px;
+//             .display-flex();
+//             align-items: center;
+//             justify-content: center;
+//             .menu-item {
+//                 position: relative;
+//                 .box-flex(1);
+//                 text-align: center;
+//                 font-size: @--size-base;
+//                 color: #666666;
+//                 &::after {
+//                     content: "";
+//                     position: absolute;
+//                     top: 0;
+//                     right: 0;
+//                     width: 200%;
+//                     height: 200%;
+//                     transform: scale(.5);
+//                     transform-origin: 0 0;
+//                     pointer-events: none;
+//                     box-sizing: border-box;
+//                     border: 0 solid #ccc;
+//                     border-right-width: 1px;
+//                 }
+//                 &:first-child::after {
+//                     border: 0;
+//                 }
+//                 .iconfont {
+//                     margin-right: 5px;
+//                 }
+//             }
+//         }
+//     }
+// }
+
+// .wuli-btn__fixed {
+//     box-sizing: border-box;
+//     position: fixed;
+//     .display-flex();
+//     left: 0;
+//     right: 0;
+//     bottom: 0;
+//     .wuli-btn__primary {
+//         width: 100%;
+//         height: 47px;
+//         line-height: 47px;
+//         font-size: @--size-base + 3;
+//         background-color: #13b6f7;
+//         .border-radius();
+//     }
+// }
+
+// 加入企业版
+.wuli-companys {
+    box-sizing: border-box;
+    
+    &__hd {
+        padding: 15px;
+        .display-flex();
+        align-items: center;
+        &--lt {
+            .display-flex();
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            border: 1px solid #e2e2e2;
+            .border-radius(7px);
+        }
+        &--logo {
+            width: 25px;
+            height: 25px;
+        }
+        &--rt {
+            margin-left: 10px;
+            .box-flex(1);
+        }
+        &--info {
+            
+        }
+        &--entry {
+            float: right;
+            width: 62px;
+            height: 20px;
+            line-height: 20px;
+            font-size: @--size-base - 2;
+            color: @--color-white;
+            text-align: center;
+            .linear-gradient(right, #ff8b00, #ff5500);
+            .border-radius(10px);
+        }
+        &--title {
+            margin-right: 64px;
+            font-size: @--size-base;
+            color: #282828;
+            font-weight: bolder;
+        }
+        &--tags {
+            margin-top: 3px;
+            width: 100%;
+        }
+        &--tag {
+            float: left;
+            position: relative;
+            box-sizing: border-box;
+            line-height: 16px;
+            padding: 0 5px;
+            .border-radius(8px);
+            font-size: @--size-base - 3;
+            background: #ff002d;
+            text-align: center;
+            color: @--color-white;
+            & + & {
+                margin-left: 5px;
+                background: #fe7532;
+            }
+        }
+    }
+    &__item {
+        position: relative;
+        padding: 0 0 10px;
+        border-top: 1px solid #f4f4f4;
+    }
+    &__bd {
+        position: relative;
+        padding: 0 15px;
+        &::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            width: 200%;
+            height: 200%;
+            transform: scale(.5);
+            transform-origin: 0 0;
+            pointer-events: none;
+            box-sizing: border-box;
+            border: 0 solid #f4f4f4;
+            border-bottom-width: 1px;
+        }
+        &--inner {
+            .display-flex();
+            align-items: center;
+        }
+        .inner-tags {
+            font-size: @--size-base - 2;
+        }
+        .inner-tag {
+            display: inline-block;
+            color: #989898;
+        }
+        .inner-number {
+            display: inline-block;
+            color: #ff5b00;
+        }
+        .inner-center {
+            .box-flex(1);
+            text-align: center;
+        }
+    }
+}
+
+//  重写 checkbox 样式  
+checkbox .wx-checkbox-input {
+    border-radius: 50%;
+    width: 40rpx;
+    height: 40rpx;
+}
+checkbox .wx-checkbox-input.wx-checkbox-input-checked {
+    border-color: #ff6152;
+    background-color: #ff6152;
+}
+checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
+    border-radius: 50%;
+    width: 40rpx;
+    height: 40rpx;
+    line-height: 40rpx;
+    text-align: center;
+    font-size: @--size-base;
+    color:@--color-white;
+    background: transparent;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+} 
+.checkbox-label {
+    position: absolute;
+    right: 15px;
+    top: 20px;
+    z-index: 1;
+}
+
+.wuli-layer {
+    width: 75%;
+    height: 299px;
+    background-color: transparent;
+    .wuli-input__item {
+        position: relative;
+        height: 42px;
+        margin-top: 15px;
+        padding: 0 10px;
+        display: -webkit-box;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        line-height: 1.4;
+        font-size: 14px;
+        background-color: #ebebeb;
+        border: 1px solid #e6e6e6;
+        border-radius: 3px;
+        .wuli-btn {
+            .border-radius(4px);
+        }
+    }
+    .wuli-field__placeholder {
+        font-size: 14px;
+        color: #c3c3c3;
+    }
+    &__wrapper {
+        padding: 0 15px;
+        height: 245px;
+        background: @--color-white;
+        .border-radius(4px);
+    }
+    &__close {
+        position: relative;
+        padding: 0 10px;
+        height: 54px;
+        text-align: right;
+        .iconfont {
+            font-size: @--size-base * 2 + 4;
+            color: @--color-white;  
+        }
+        &::after {
+            content: "";
+            position: absolute;
+            top: 30px;
+            right: 25px;
+            width: 2px;
+            height: 25px;
+            pointer-events: none;
+            box-sizing: border-box;
+            background-color: @--color-white;
+        } 
+    }
+    &__hd {
+        padding: 25px 0 10px;
+        font-size: @--size-base + 3;
+        color: #5d5d5d;
+        text-align: center;
+    }
+    &__fd {
+        margin-top: 15px;
+        .wuli-btn {
+            height: 42px;
+            line-height: 42px;
+            border-radius: 4px;
+        }
+    } 
+}
+
+
+
+
+
+

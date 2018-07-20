@@ -1,0 +1,128 @@
+<!--index.wxml-->
+<import src="../../components/button/button.wxml" />
+<wxs module="filter" src="../../utils/filter.wxs"></wxs>
+
+<view class="container start-wrapper">
+    <!-- indicator -->
+    <view class="indicator">
+        <block wx:for="{{indicator}}" wx:for-item="item" wx:key="index">
+            <view class="indicator-dots {{currentDots == item ? 'is-active' : ''}}" data-current="{{index}}" bindtap="swichNav"></view>
+        </block>
+    </view>
+    <!-- swiper -->
+    <swiper current="{{currentDots}}" autoplay="{{false}}" circular previous-margin="{{marginRange}}" next-margin="{{marginRange}}"
+        class="swiper-contaniner" duration="300" bindchange="bindChange">
+        <swiper-item>
+            <view class="swiper-slide {{currentDots == 0 ? 'is-active' : ''}} {{isOpen && currentDots == 0 ? 'is-active__up' : ''}}">
+                <view class="swiper-slide__border swiper-slide__item">
+                    <image class="swiper-slide__img" src="{{filter.formatUrl(userInfo.cardphotoMax)}}" mode="aspectFit"></image>
+                    <view class="swiper-slide__hd">
+                        <view class="swiper-slide__hd-logo">
+                            <image class="tabbar-item__icon" src="{{filter.formatUrl(userInfo.companylogo)}}" mode="aspectFill"></image>
+                        </view>
+                        <view class="swiper-slide__item-title">{{userInfo.companyname}}</view>
+                        <navigator class="swiper-slide__item-info" url="/pages/main/rank_version/version" hover-class="none">企业版</navigator>
+                    </view>
+                </view>
+            </view>
+        </swiper-item>
+        <swiper-item>
+            <view class="swiper-slide {{currentDots == 1 ? 'is-active' : ''}} {{isOpen && currentDots == 1 ? 'is-active__up' : ''}}">
+                <view class="swiper-slide__border">
+                    <view class="swiper-slide__bd">
+                        <block wx:if="{{defaultData}}">
+                            <block wx:if="{{userInfo.sex == 1}}">
+                                <image class="avater-default" src="/image/avatar_man.png" mode="aspectFit"></image>
+                            </block>
+                            <block wx:else>
+                                <image class="avater-default" src="/image/avatar_woman.png" mode="aspectFit"></image>
+                            </block>
+                        </block>
+                        <block wx:else>
+                            <image class="img-default" src="{{filter.formatUrl(userInfo.cardphotoMax)}}" mode="aspectFill" bindtap="goMain"></image>
+                        </block>
+                    </view>
+                    <view class="swiper-slide__info">
+                        <block wx:if="{{defaultData}}">
+                            <view class="swiper-slide__add" catchtap="newCardHanle">
+                                <i class="iconfont icon-tianjia"></i>
+                            </view>
+                            <view class="swiper-slide__new" catchtap="newCardHanle">创建新名片</view>
+                        </block>
+                        <block wx:else>
+                            <image class="logo-default" src="{{filter.formatUrl(userInfo.companylogo)}}" mode="aspectFit"></image>
+                            <view class="swiper-slide__desc">{{userInfo.name}}</view>
+                            <view class="swiper-slide__inner">{{userInfo.companyname}}</view>
+                            <view class="swiper-slide__job">{{userInfo.position}}</view>
+                        </block>
+                    </view>
+                </view>
+            </view>
+        </swiper-item>
+        <swiper-item>
+            <view class="swiper-slide {{currentDots == 2 ? 'is-active' : ''}} {{isOpen && currentDots == 2 ? 'is-active__up' : ''}}">
+                <view class="swiper-slide__border swiper-slide__card">
+                    <view class="swiper-slide__card-title">名片夹</view>
+                    <view class="swiper-slide__folder">
+                        <block wx:if="{{IndexFolderUser.length != 0}}">
+                            <navigator class="folder-item" url="/pages/main/folder_group/group" hover-class="none" wx:for="{{IndexFolderUser}}" wx:key="">
+                                <image wx:if="{{item.cardphotoMax}}" class="folder-item__img" src="{{item.cardphotoMax}}" mode="aspectFill"></image>
+                                <image wx:else class="folder-item__img" src="{{item.headimgurl}}" mode="aspectFill"></image>
+                                <i class="iconfont icon-renwunanhui1"></i>
+                            </navigator>
+                        </block>
+                        <block wx:else>
+                            <view class="folder-item">
+                                <i class="iconfont icon-renwunanhui1"></i>
+                            </view>
+                            <view class="folder-item">
+                                <i class="iconfont icon-renwunanhui1"></i>
+                            </view>
+                            <view class="folder-item">
+                                <i class="iconfont icon-renwunanhui1"></i>
+                            </view>
+                            <view class="folder-item">
+                                <i class="iconfont icon-renwunanhui1"></i>
+                            </view>
+                            <view class="folder-item">
+                                <i class="iconfont icon-renwunanhui1"></i>
+                            </view>
+                            <view class="folder-item">
+                                <i class="iconfont icon-renwunanhui1"></i>
+                            </view>
+                            <view class="folder-item">
+                                <i class="iconfont icon-renwunanhui1"></i>
+                            </view>
+                            <view class="folder-item">
+                                <i class="iconfont icon-renwunanhui1"></i>
+                            </view>
+                        </block>
+                    </view>
+                    <view class="swiper-slide__card-total">{{myUserNum}}张</view>
+                </view>
+            </view>
+        </swiper-item>
+    </swiper>
+    
+    <!-- tabbar -->
+    <view class="tabbar">
+        <block wx:if="{{!isOpen}}">
+            <navigator class="tabbar-item" url="/pages/main/user/user" hover-class="none">
+                <image class="tabbar-item__icon" src="/image/tabbar_01.png" mode="aspectFit"></image>
+                <view class="tabbar-item__title">个人中心</view>
+            </navigator>
+        </block>
+        <view class="tabbar-item" bindtap="plus">
+            <image class="tabbar-item__icon" src="/image/tabbar_02.png" mode="aspectFit"></image>
+            <view class="tabbar-item__title">发名片</view>
+            <template is="ani-button" data="{{ ...button.br }}" />
+        </view>
+        <block wx:if="{{!isOpen}}">
+            <navigator class="tabbar-item wuli-badge" url="/pages/main/message_list/list" hover-class="none">
+                <view class="wuli-badge__count">{{UnReadMsgNum}}</view>
+                <image class="tabbar-item__icon" src="/image/tabbar_03.png" mode="aspectFit"></image>
+                <view class="tabbar-item__title">消息中心</view>
+            </navigator>
+        </block>
+    </view>
+</view>

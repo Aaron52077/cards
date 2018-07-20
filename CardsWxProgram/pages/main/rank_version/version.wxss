@@ -1,0 +1,108 @@
+/* pages/main/rank_version/version.wxss */
+
+.wuli-version {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+}
+
+.wuli-version__wrapper {
+    position: relative;
+    height: 488px;
+    width: 306px;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 5px 15px rgba(14, 16, 22, .1);
+}
+
+.wuli-version__hd, .wuli-version__hd--img {
+    width: 100%;
+    height: 204px;
+}
+
+.wuli-version__hd {
+    background-color: #eee;
+}
+
+.wuli-version__hd--img {
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+.wuli-version__bd {
+    position: relative;
+    height: 235px;
+}
+.wuli-version__hd--colse {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding-right: 4px;
+    width: 50px;
+    height: 44px;
+    text-align: right;
+}
+.wuli-version__hd--colse .iconfont {
+    position: relative;
+    font-size: 17px;
+    color: #fff;
+    z-index: 1;
+}
+.wuli-version__hd--colse::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0; 
+    height: 0; 
+    border-width: 22px 25px; 
+    border-style: solid; 
+    border-color: #7c7d7f #7c7d7f transparent transparent;
+    border-top-right-radius: 4px;
+}
+.wuli-version__title {
+    padding: 20px 0;
+    font-size: 24px;
+    text-align: center;
+}
+
+.wuli-version__item {
+    padding: 5px 20px 5px 75px;
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    color: #878787;
+}
+
+.wuli-version__item .iconfont {
+    margin-right: 5px;
+    font-size: 20px;
+    color: #13b6f7;
+}
+
+.wuli-version__fd {
+    position: relative;
+    height: 48px;
+    line-height: 48px;
+    color: #ff674f;
+    font-size: 14px;
+    text-align: center;
+}
+
+.wuli-version__fd::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 200%;
+    height: 200%;
+    transform: scale(.5);
+    transform-origin: 0 0;
+    pointer-events: none;
+    box-sizing: border-box;
+    border: 0 solid #f4f4f4;
+    border-top-width: 1px;
+}

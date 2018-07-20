@@ -1,0 +1,18 @@
+<!--pages/start/qrcode/qrcode.wxml-->
+<view class="qrcode container">
+    <image class="qrcode-bg" src="/image/wechat_bg.png" background-size="cover" mode="scaleToFill"></image>
+    <view class="qrcode__bd">
+        <view class="qrcode__bd--wrapper">
+            <view class="qrcode__bd--avatar">
+                <image src="{{userInfo.headimgurl}}" mode="aspectFill"></image>
+            </view>
+            <view class="qrcode__bd--info">
+                <view class="qrcode__bd--title">{{userInfo.name}}</view>
+                <view class="qrcode__bd--desc">{{userInfo.introduction}}</view>
+                <image class="qrcode__bd--code" src="{{userInfo.QRcode}}" mode="aspectFit"></image>
+                <view class="qrcode__bd--inner">扫描二维码，来认识和了解我吧</view>
+                <view class="qrcode__bd--inner" wx-if="{{userInfo.cardtype == 0}}">升级成为会员，拥有专属小程序码</view>
+            </view>
+        </view>
+    </view>
+</view>

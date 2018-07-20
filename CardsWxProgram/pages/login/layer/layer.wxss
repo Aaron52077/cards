@@ -1,0 +1,153 @@
+/* pages/login/layer/layer.wxss */
+
+.wuli-login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wuli-login__wrapper {
+    box-sizing: border-box;
+    position: relative;
+    padding: 0 25px;
+    height: 488px;
+    width: 306px;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 5px 15px rgba(14, 16, 22, .1);
+}
+
+.wuli-login__hd {
+    position: relative;
+    width: 100%;
+    height: 120px;
+    border-bottom: 1px solid #e3e3e3;
+}
+
+.wuli-login__title {
+    font-family: PingFangSC-Regular, sans-serif;
+    padding: 30px 0 26px;
+    text-align: center;
+    font-size: 24px;
+    color: #282828;
+}
+
+.wuli-login__menu {
+    padding: 0 20px;
+    height: 32px;
+    display: flex;
+}
+
+.wuli-login__menu .menu-item {
+    position: relative;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 32px;
+    color: #acacac;
+    font-size: 12px;
+}
+
+.wuli-login__menu .menu-item::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 4rpx;
+    width: 32px;
+    height: 2px;
+    transform: translateX(-50%);
+    pointer-events: none;
+    box-sizing: border-box;
+    border: 0 solid #686868;
+    border-bottom-width: 0;
+}
+
+.wuli-login__menu .menu-item.is-active {
+    color: #686868;
+}
+
+.wuli-login__menu .menu-item.is-active::after {
+    border-bottom-width: 2px;
+}
+.wuli-login__bd {
+    padding: 10px 0;
+    height: 272px;
+}
+.wuli-input__item {
+    position: relative;
+    height: 32px;
+    margin-top: 15px;
+    padding: 0 10px;
+    display: -webkit-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    line-height: 1.4;
+    font-size: 14px;
+    background-color: #ebebeb;
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+}
+
+.wuli-field__placeholder {
+    font-size: 14px;
+    color: #c3c3c3;
+}
+
+.wuli-input__item .wuli-btn {
+    border-radius: 4px;
+}
+.wuli-login__bd--btn {
+    margin: 50px 0 30px;
+}
+.wuli-login__bd--btn .wuli-btn {
+    height: 41px;
+    line-height: 41px;
+    border-radius: 4px;
+}
+
+.wuli-helper {
+    position: relative;
+    width: 100%;
+    margin: 30px auto 10px;
+    line-height: 20px;
+    font-size: 13px;
+    text-align: center;
+    vertical-align: middle;
+}
+.wuli-helper__tips {
+    padding: 0 10px;
+    margin-bottom: 3px;
+    position: relative;
+    top: -11px;
+    display: inline-block;
+    vertical-align: middle;
+    height: 20px;
+    line-height: 20px;
+    color: #282828;
+    text-decoration: underline;
+    background-color: #fff; 
+    z-index: 1;
+}
+.wuli-helper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 200%;
+    transform: scale(.5);
+    transform-origin: 0 0;
+    pointer-events: none;
+    box-sizing: border-box;
+    border: 0 solid #c4c4c4;
+    border-top-width: 1px;
+}
+
+.wuli-input__item--password {
+    padding: 10px 0 0;
+    font-size: 11px;
+    color: #d0d0d0;
+    text-align: right;
+}

@@ -1,0 +1,116 @@
+/* pages/main/activity_sign/sign.wxss */
+
+.cover {
+    width: 100%;
+    height: 240rpx;
+}
+
+.input-group .input-top {
+    background: #fff;
+    padding: 0 24rpx;
+}
+
+.input-group .input-item {
+    background: #fff;
+    height: 88rpx;
+    line-height: 88rpx;
+    border-bottom: 2rpx solid #eee;
+    display: flex;
+    align-items: center;
+}
+
+.input-group .input-item input {
+    font-size: 28rpx;
+    color: #999;
+    width: 660rpx;
+}
+
+.input-group .input-item .picker-empty {
+    margin-top: 102rpx;
+}
+
+.input-group .input-item .picker-empty span {
+    margin: 0 5rpx;
+}
+
+.input-group .input-item .picker-item {
+    margin: 0 5rpx;
+}
+
+.input-group .button-top {
+    font-size: 24rpx;
+    color: #999;
+    text-align: center;
+    height: 95rpx;
+    line-height: 95rpx;
+}
+
+.input-group button {
+    margin: 0 15px;
+    height: 88rpx;
+    display: block;
+    background: #fe4d05;
+    border-radius: 10rpx;
+    line-height: 88rpx;
+    text-align: center;
+    color: #fff;
+    font-size: 36rpx;
+}
+
+.input-group .techology {
+    font-size: 28rpx;
+    color: #666;
+    text-align: center;
+    margin-top: 40rpx;
+    margin-bottom: 40rpx;
+    position: relative;
+}
+
+.input-group .techology::after {
+    content: "";
+    width: 58rpx;
+    height: 2rpx;
+    background: #666;
+    position: absolute;
+    top: 50%;
+    right: 180rpx;
+}
+
+.input-group .techology::before {
+    content: "";
+    width: 58rpx;
+    height: 2rpx;
+    background: #666;
+    position: absolute;
+    top: 50%;
+    left: 180rpx;
+}
+
+.techology {
+    font-size: 28rpx;
+    color: #666;
+    text-align: center;
+    margin-top: 40rpx;
+    margin-bottom: 40rpx;
+    position: relative;
+}
+
+.techology::after {
+    content: "";
+    width: 58rpx;
+    height: 2rpx;
+    background: #666;
+    position: absolute;
+    top: 50%;
+    right: 180rpx;
+}
+
+.techology::before {
+    content: "";
+    width: 58rpx;
+    height: 2rpx;
+    background: #666;
+    position: absolute;
+    top: 50%;
+    left: 180rpx;
+}

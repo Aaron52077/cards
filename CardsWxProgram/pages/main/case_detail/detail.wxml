@@ -1,0 +1,95 @@
+<!--pages/main/case_detail/detail.wxml-->
+<wxs module="filter" src="../../../utils/filter.wxs"></wxs>
+<import src="../../../wxParse/wxParse.wxml"/>  
+
+<view class="container wuli-detail">
+    <view class="wuli-panel wuli-detail__hd">
+        <swiper indicator-dots="true" autoplay interval="3000" duration="500" indicatorColor="#f08519" indicator-active-color="#fff"
+            class="wuli-detail__hd--banner">
+            <block wx:if="{{getCaseDetail.arr_altas == null}}">
+                <swiper-item>
+                    <image src="{{filter.formatUrl(getCaseDetail.cover)}}" class="slide-image" mode="aspectFill" />
+                </swiper-item>
+            </block>
+            <block wx:else>
+                <swiper-item wx:for="{{getCaseDetail.arr_altas}}" wx:key="{{index}}">
+                    <image src="{{filter.formatUrl(item)}}" class="slide-image" mode="aspectFill" />
+                </swiper-item>
+            </block>
+        </swiper>
+        <view class="wuli-detail__hd--title">{{getCaseDetail.address}}</view>
+        <view class="wuli-detail__hd--info">
+            <text class="wuli-detail__hd--tag1">￥</text>
+            <block wx:if="{{getCaseDetail.price!=null}}">
+                <text class="wuli-detail__hd--tag2">{{filter.getTotalPrice(getCaseDetail.price)}}</text>
+            </block>
+            <block wx:else>
+                <text class="wuli-detail__hd--tag2">{{filter.getTotalPrice(getCaseDetail.totalPrice)}}</text>
+            </block>
+
+            <text class="wuli-detail__hd--tag3">全屋整装</text>
+            <text class="wuli-detail__hd--tag4">品质保证</text>
+        </view>
+    </view>
+    <view class="wuli-panel wuli-detail__hd">
+        <view class="wuli-cell">
+            <view class="wuli-cell__hd">
+                <image src="/image/logo-little.png" class="wuli-cell__icon"></image>
+            </view>
+            <view class="wuli-cell__bd">
+                <text class="wuli-detail__hd--badge">蜂巢认证</text> 诚信装企，装修无忧</view>
+        </view>
+    </view>
+    <view class="wuli-detail__panel wuli-detail__hd">
+        <view class="line"></view>
+        <view class="wuli-detail__panel--title">
+            <i class="iconfont icon-caozuorizhi"></i>装修日志
+        </view>
+        <view class="line"></view>
+    </view>
+    <view class="wuli-panel">
+        <block wx-if="{{getDailyList.length==0}}">
+            <view class="wuli-loadmore">
+                <view class="wuli-loadmore__icon">
+                    <i class="iconfont icon-wushuju"></i>
+                </view>
+                <view class="wuli-loadmore__tips">暂无相关日志哦~</view>
+            </view>
+        </block>
+        <block wx:else>
+            <view class="wuli-log">
+                <view class="wuli-log__item" wx:for="{{getDailyList}}" wx:for-item="item" wx:key="">
+                    <view class="wuli-log__avatar">
+                        <image src="{{item.uAvatar}}" mode="aspectFill"></image>
+                    </view>
+                    <view class="wuli-log__inner">
+                        <view class="wuli-log__inner--title">{{item.uname}}</view>
+                        <view class="wuli-log__inner--time">{{item.addtime}}</view>
+                        <view class="wuli-log__inner--progress">#施工阶段 — {{item.stage}}#</view>
+                        <view class="wuli-log__inner--info">{{item.info}}</view>
+                        <view class="wuli-log__inner--desc" wx:if="{{ item.arr_altas.length>0 }}">
+                            <image wx:for="{{item.arr_altas}}" wx:for-item="img" wx:key="{{index}}" src="{{filter.formatUrl(img)}}" data-src="{{filter.formatUrl(img)}}"
+                                data-atlas="{{item.arr_altas}}" mode="aspectFill" bindtap="previewImage"></image>
+                        </view>
+                        <view class="wuli-log__inner--other">来自于：
+                            <text class="text-color">{{item.uname}}</text>
+                        </view>
+                        <view class="wuli-log__inner--other">位置：
+                            <text class="text-color">{{item.address}}</text>
+                        </view>
+                    </view>
+                </view>
+                <block wx:if="{{loading}}">
+                    <view class="wuli-loadmore">
+                        <view class="wuli-loadmore__tips">玩命的加载中...</view>
+                    </view>
+                </block>
+                <block wx:else>
+                    <view class="wuli-loadmore wuli-loadmore__nodata">
+                        <view class="wuli-loadmore__tips">亲，我是有底线的...</view>
+                    </view>
+                </block>
+            </view>
+        </block>
+    </view>
+</view>

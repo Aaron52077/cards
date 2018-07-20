@@ -1,0 +1,84 @@
+<view class="container wuli-folder__list">
+  <view class="wuli-panel__bg">
+    <view class="wuli-search wuli-panel">
+      <i class="iconfont icon-search"></i>
+      <input class="wuli-search__input" confirm-type="search" placeholder="搜索" bindconfirm="bindconfirm" />
+    </view>
+  </view>
+  <view class="wuli-panel wuli-folder__list--warpper">
+    <view class="wuli-folder__list--title {{chooseFlag ? 'is-active':''}}">
+      <block wx:if="{{!chooseFlag}}">
+        <text bindtap="chooseHanle">选择</text>
+      </block>
+      <block wx:else>
+        <text bindtap="chooseHanle">完成</text>
+      </block>
+    </view>
+    <view class="wuli-folder__list--bd">
+      <block wx:if="{{!chooseFlag}}">
+        <navigator class="wuli-folder__list--item" wx:for="{{cardList}}" wx:for-item="item" wx:key="" url="/pages/main/index?curuid={{item.cid}}" hover-class="none">
+          <view class="item-hd">
+            <image class="item-hd__img" src="{{item.uavatar}}" mode="aspectFill"></image>
+          </view>
+          <view class="item-bd">
+            <view class="item-bd__title">{{item.uname}}</view>
+            <view class="item-bd__desc">{{item.position}}</view>
+          </view>
+          <view class="item-fd">
+            <image class="item-fd__img" src="{{item.logo}}" mode="aspectFill"></image>
+          </view>
+        </navigator>
+      </block>
+      <block wx:else>
+        <view class="wuli-folder__list--item {{ item.ischecked ? 'item-checked':''}}" wx:for="{{cardList}}" wx:for-item="item" wx:for-index="pIndex" wx:key="">
+          <checkbox-group name="{{ item.name }}" data-id="{{item.id}}" bindchange="onCheckboxChange" data-index="{{ pIndex }}">
+            <label>
+              <checkbox class="checkbox-label" value="{{ item.name }}" checked="{{ item.ischecked }}" />
+              <view class="item-hd">
+                <image class="item-hd__img" src="{{item.uavatar}}" mode="aspectFill"></image>
+              </view>
+              <view class="item-bd">
+                <view class="item-bd__title">{{item.uname}}</view>
+                <view class="item-bd__desc">{{item.position}}</view>
+              </view>
+              <view class="item-fd">
+                <image class="item-fd__img" src="{{item.logo}}" mode="aspectFill"></image>
+              </view>
+            </label>
+          </checkbox-group>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>
+<!-- layer -->
+<view class="wuli-folder__list--popup wuli-popup wuli-popup__bottom {{ chooseFlag ? 'wuli-popup__show' : ''}}">
+  <view class="wuli-popup__container">
+    <view class="popup__bd">
+      <view class="popup__bd-item" bindtap="toggleRightPopup">
+        <i class="iconfont icon-yidong"></i>移至</view>
+      <button class="popup__bd-item popup__bd-btn" open-type="share">
+        <i class="iconfont icon-zhuanfa"></i>分享</button>
+      <view class="popup__bd-item" bindtap='handleDelCard'>
+        <i class="iconfont icon-shanchu3"></i>删除</view>
+    </view>
+  </view>
+</view>
+
+<!-- layer -->
+<view class="wuli-folder__list--right wuli-popup wuli-popup__right {{ moveFlag ? 'wuli-popup__show' : ''}}">
+  <view class="wuli-popup__mask" catchtap="toggleRightPopup"></view>
+  <view class="wuli-popup__container">
+    <view class="wuli-panel__title">名片分组</view>
+    <block wx:for="{{folderList}}" wx:key="{{index}}">
+      <radio-group class="wuli-panel" bindchange="radioChange" data-id="{{item.id}}" data-name="{{item.name}}">
+        <label class="wuli-cell wuli-cell__access">
+          <view class="wuli-cell__bd">{{item.name}}</view>
+          <view class="wuli-cell__fd">
+            <radio value="{{item.name}}" checked="{{item.checked}}" />
+          </view>
+        </label>
+      </radio-group>
+    </block>
+  </view>
+</view>

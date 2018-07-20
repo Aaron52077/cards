@@ -1,0 +1,75 @@
+<!--pages/main/company_search/list.wxml-->
+<view class="container">
+    <view class="wuli-panel__bg">
+        <view class="wuli-search wuli-panel">
+            <i class="iconfont icon-search"></i>
+            <input class="wuli-search__input" placeholder="输入公司名称" confirm-type="search" bindconfirm="bindconfirm" />
+        </view>
+    </view>
+
+    <view class="wuli-companys__item wuli-panel" wx:for="{{companyList}}" wx:for-item="item" wx:for-index="pIndex" wx:key="">
+        <checkbox-group name="{{ item.name }}" data-index="{{ pIndex }}" data-id="{{item.id}}" bindchange="onCheckboxChange">
+            <label>
+                <checkbox class="checkbox-label" value="{{ item.name }}" checked="{{ item.checked }}" />
+                <view class="wuli-companys__hd">
+                    <view class="wuli-companys__hd--lt">
+                        <image class="wuli-companys__hd--logo" src="{{item.headportrait}}" mode="aspectFit"></image>
+                    </view>
+                    <view class="wuli-companys__hd--rt">
+                        <view class="wuli-companys__hd--info">
+                            <view class="wuli-companys__hd--title">{{item.name}}</view>
+                        </view>
+                        <view class="wuli-companys__hd--tags">
+                            <view class="wuli-companys__hd--tag" >蜂巢认证装企</view>
+                             <view class="wuli-companys__hd--tag" >蜂巢SAAS采集数据</view>
+                        </view>
+                    </view>
+                </view>
+                <view class="wuli-companys__bd">
+                    <view class="wuli-companys__bd--inner">
+                        <view class="inner-tags">
+                            <view class="inner-tag">设计师数量：</view>
+                            <view class="inner-number">{{item.desCount}}</view>
+                        </view>
+                        <view class="inner-tags inner-center">
+                            <view class="inner-tag">工长数量：</view>
+                            <view class="inner-number">{{item.pmCount}}</view>
+                        </view>
+                        <view class="inner-tags">
+                            <view class="inner-tag">服务业主：</view>
+                            <view class="inner-number">{{item.CusCount}}</view>
+                        </view>
+                    </view>
+                </view>
+            </label>
+        </checkbox-group>
+    </view>
+</view>
+
+<view class="wuli-popup {{ showPopup ? 'wuli-popup__show' : ''}}">
+    <view class="wuli-popup__mask"></view>
+    <view class="wuli-popup__container wuli-layer">
+        <view class="wuli-layer__close">
+            <i class="iconfont icon-guanbi" bindtap="togglePopup"></i>
+        </view>
+        <view class="wuli-layer__wrapper">
+            <view class="wuli-layer__hd">验证手机号码</view>
+            <form bindsubmit="formSubmit" bindreset="formReset">
+                <view class="wuli-input__item wuli-field">
+                    <input type="number" bindinput='handlechage' placeholder="请输入手机号码" maxlength="11" name="tel" placeholder-class="wuli-field__placeholder" class="wuli-field__input wuli-cell__bd"
+                    />
+                </view>
+                <view class="wuli-input__item wuli-field">
+                    <input type="number" placeholder="请输入验证码" maxlength="6" name="code" placeholder-class="wuli-field__placeholder" class="wuli-field__input wuli-cell__bd"
+                    />
+                    <view class="wuli-cell__ft">
+                        <button class="wuli-btn wuli-btn__mini wuli-btn__primary" disabled='{{disabled}}' bindtap='handleGetCode'>{{codemsg}}</button>
+                    </view>
+                </view>
+                <view class="wuli-layer__fd">
+                    <button class="wuli-btn wuli-btn__primary" bindconfirm="handleSubmit" formType="submit">验证并提交</button>
+                </view>
+            </form>
+        </view>
+    </view>
+</view>

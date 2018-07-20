@@ -1,0 +1,116 @@
+<!--pages/main/comment_list/list.wxml-->
+<wxs module="filter" src="../../../utils/filter.wxs"></wxs>
+
+<scroll-view style='height:{{windowsHeight}}px' scroll-y='true' bindscrolltolower="loadMore" lower-threshold="50px" enable-back-to-top="true">
+    <view class="container wuli-comment">
+        <view class="wuli-comment__hd wuli-comment__tags" wx:if="{{TagList.length > 0}}">
+            <view class="wuli-comment__tag" wx:for="{{TagList}}" wx:key="index">{{item.tags}}({{item.num}})</view>
+        </view>
+        <block wx-if="{{CommentList.length==0 }}">
+            <view class="wili-panel">
+                <view class="wuli-loadmore">
+                    <view class="wuli-loadmore__icon">
+                        <i class="iconfont icon-wushuju"></i>
+                    </view>
+                    <view class="wuli-loadmore__tips">这人中庸，别人好的，坏的都不说一句</view>
+                </view>
+            </view>
+        </block>
+        <view class="wuli-comment__bd">
+            <view class="wuli-comment__item" wx:for="{{CommentList}}" wx:key="">
+                <view class="wuli-comment__bd--info">
+                    <image class="wuli-comment__bd--avater" src="{{item.uavatar}}" mode="aspectFill"></image>
+                    <view class="wuli-comment__bd--inner">
+                        <view class="wuli-comment__item--hd">
+                            <view class="wuli-comment__item--title">{{item.uname}}</view>
+                            <view class="wuli-comment__item--edit" data-vid="{{item.id}}" data-index="index" wx:if="{{curuid==uid}}" catchtap="thumbHanle">
+                                <i class="iconfont icon-more"></i>
+                            </view>
+                        </view>
+                        <view class="wuli-comment__item--bd">{{item.content}}</view>
+                    </view>
+                </view>
+                <view class="wuli-comment__item--fd">
+                    <view class="wuli-comment__item--inner">
+                        <text class="wuli-comment__item--time">{{item.addtime}}</text>
+                    </view>
+                    <!-- <button data-id='{{item.id}}' data-index='index' bindtap='handleLike'>点赞</button> -->
+                    <view class="wuli-comment__item--reply">
+                        <i class="iconfont icon-huifu1" bindtap="commentHandle" data-index="{{index}}"></i>
+                        <view class="wuli-comments wuli-popup wuli-popup__right {{ commentPopup==index ? 'wuli-popup__show' : ''}}">
+                            <view class="wuli-popup__mask" bindtap="commentHandle" data-index="{{index}}"></view>
+                            <view class="wuli-popup__container">
+                                <view class="item-btn">
+                                    <navigator url='/pages/main/comment_edit/upload?id={{item.id}}&name={{item.uname}}' hover-class='none'>
+                                        <i class="iconfont icon-pinglun1"></i>回复
+                                    </navigator>
+                                </view>
+                                <view class="item-btn" bindtap='handleLike' data-id='{{item.id}}' data-index="{{index}}">
+                                    <i class="iconfont icon-dianzan"></i>点赞
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+                <view class="wuli-comment__reply" wx:if="{{item.SubCommentLike.length!=0 || item.SubCommentList.length!=0}}">
+                    <view class="wuli-comment__reply--total" wx:if="{{item.SubCommentLike.length!=0}}">
+                        <view class="reply-person">
+                            <block wx:for="{{item.SubCommentLike}}" wx:for-item="p" wx:key="{{p.id}}">
+                                {{p.uname}},
+                            </block>
+                        </view>
+                        <view class="reply-total">等{{item.SubCommentLike.length}}个人点赞</view>
+                    </view>
+                    <view class="wuli-comment__reply--item" wx:for="{{item.SubCommentList}}" wx:for-item="p" wx:key="">
+                        <text class="reply-name">{{p.uname}}：</text>
+                        <text class="reply-info">{{p.content}}</text>
+                    </view>
+                </view>
+            </view>
+            <block wx:if="{{loading}}">
+                <view class="wuli-loadmore">
+                    <view class="wuli-loadmore__tips">玩命的加载中...</view>
+                </view>
+            </block>
+            <block wx:else>
+                <view class="wuli-loadmore wuli-loadmore__nodata">
+                    <view class="wuli-loadmore__tips">亲，我是有底线的...</view>
+                </view>
+            </block>
+        </view>
+    </view>
+</scroll-view>
+
+<!-- layer -->
+<view class="wuli-edit wuli-popup wuli-popup__bottom {{ showBottomPopup ? 'wuli-popup__show' : ''}}">
+    <view class="wuli-popup__mask" catchtap="toggleBottomPopup"></view>
+    <view class="wuli-popup__container">
+        <view class="wuli-edit__bd">
+            <view class="wuli-edit__item" bindtap='handelDel'>
+                <view class="wuli-edit__item--icon">
+                    <i class="iconfont icon-shanchu1"></i>
+                </view>
+                <view class="wuli-edit__item--desc">删除</view>
+            </view>
+            <view class="wuli-edit__item">
+                <view class="wuli-edit__item--icon">
+                    <i class="iconfont icon-msnui-msg-invert"></i>
+                </view>
+                <view class="wuli-edit__item--desc">回复</view>
+            </view>
+            <view class="wuli-edit__item">
+                <view class="wuli-edit__item--icon">
+                    <i class="iconfont icon-zhiding"></i>
+                </view>
+                <view class="wuli-edit__item--desc">置顶</view>
+            </view>
+            <view class="wuli-edit__item">
+                <view class="wuli-edit__item--icon">
+                    <i class="iconfont icon-jubao"></i>
+                </view>
+                <view class="wuli-edit__item--desc">举报</view>
+            </view>
+        </view>
+        <view class="wuli-edit__fd" catchtap="toggleBottomPopup">取消</view>
+    </view>
+</view>

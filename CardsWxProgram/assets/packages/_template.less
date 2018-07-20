@@ -1,0 +1,744 @@
+@import '../common/_var';
+@import '../common/_mixins';
+
+.wuli-template {
+    margin-bottom: 10px;
+    .wuli-atlas.wuli-cell,
+    .wuli-cases.wuli-cell,
+    .wuli-sites.wuli-cell {
+        padding: 12px 15px;
+        &::after {
+            border: 0;
+        }
+    }
+    .wuli-cell__icon {
+        display: inline-block;
+        width: 24px;
+    }
+    .icon-Ftujineirong- {
+        color: #32c49c;
+    }
+    .icon-anli {
+        color: #ff9930;
+    }
+    .icon--cg,
+    .icon-pinglun,
+    .icon-gongsi {
+        color: #ff674f;
+    }
+    .icon-anli,
+    .icon-pinglun,
+    .icon-gongsi {
+        font-size: @--size-base + 4;
+    }
+    .icon--cg {
+        font-size: @--size-base + 6;
+    }
+    .wuli-cell__ft {
+        font-size: @--size-base;
+    }
+}
+
+// 图集
+.wuli-atlas {
+    @--color-tag: #67d47b;
+    box-sizing: border-box;
+    padding: 5px 15px 15px;
+    &__hd {
+        position: relative;
+        width: 100%;
+        height: 160px;
+        &--tag {
+            position: absolute;
+            left: -8rpx;
+            top: 10px;
+            padding: 4px 12px 4px 10px;
+            font-size: @--size-base - 2;
+            color: #e5f7ff;
+            background-color: @--color-tag;
+            border-top-right-radius: 8px;
+            border-bottom-right-radius: 8px;
+            &::after {
+                content: "";
+                position: absolute;
+                left: 0;
+                top: -6rpx;
+                width: 0;
+                height: 0;
+                border-width: 6rpx 5rpx;
+                border-style: solid;
+                border-color: @--color-white @--color-tag @--color-tag @--color-white;
+            }
+        }
+        &--img {
+            width: 100%;
+            height: 160px;
+        }
+        &--inner {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 32px;
+            background: rgba(0, 0, 0, 0.4); // filter: blur(40px);
+            overflow: hidden;
+        }
+        &--info {
+            // position: absolute;
+            // left: 0;
+            // right: 0;
+            // bottom: 0;
+            .display-flex();
+            align-items: center;
+            padding: 8px 6px;
+            font-size: @--size-base - 2;
+            color: #dcdcdc; // z-index: 1;
+        }
+        &--lt {
+            padding-right: 20px;
+            .box-flex(1);
+            .text-overflow();
+        }
+        &--rt {
+            .icon-Ftujineirong- {
+                font-size: @--size-base;
+                color: #dcdcdc;
+            }
+        }
+    }
+    &__bd {
+        margin-top: 5px;
+        .clearfix();
+    }
+    &__item {
+        position: relative;
+        float: left;
+        width: 32.4%;
+        height: 100px;
+        background-color: @--color-info;
+        &:nth-child(3n-1) {
+            margin: 0 1.4%;
+        }
+        &--img {
+            width: 100%;
+            height: 100px;
+        }
+        &--total {
+            position: absolute;
+            right: 5px;
+            bottom: 5px;
+            .display-flex();
+            align-items: center;
+            justify-content: center;
+            width: 25px;
+            height: 25px;
+            font-size: @--size-base - 1;
+            color: #f8f8f8;
+            background-color: rgba(0, 0, 0, 0.4);
+            .border-radius(50%);
+        }
+    }
+}
+
+// 案例
+.wuli-cases {
+    @--color-info: #eee;
+    box-sizing: border-box;
+    padding: 5px 15px 0;
+    &__item {
+        &--big {
+            .box-flex(3);
+            margin-right: 5px;
+            height: 189px;
+            background-color: @--color-info;
+            overflow: hidden;
+        }
+        &--small {
+            .box-flex(2);
+            .display-flex();
+            flex-direction: column;
+            height: 189px;
+            overflow: hidden;
+        }
+        .img-big {
+            width: 100%;
+            height: 195px;
+        }
+        .img-small {
+            width: 100%;
+            height: 95px;
+            background-color: @--color-info;
+            &:first-child {
+                margin-bottom: 5px;
+            }
+        }
+    }
+    &__hd {
+        .display-flex();
+    }
+    &__bd {
+        padding: 10px 0 0;
+        &--inner {
+            .display-flex();
+            align-items: center;
+        }
+        &--star {
+            width: 98px;
+            .iconfont {
+                margin-right: 6px;
+                color: #ff9930;
+                font-size: @--size-base;
+                &:last-child {
+                    margin-right: 0;
+                }
+            }
+        }
+        &--title {
+            .box-flex(1);
+            padding-right: 10px;
+            font-size: @--size-base + 3;
+            color: #282828;
+            .text-overflow();
+        }
+        &--tags {
+            .box-flex(1);
+        }
+        &--eye {
+            display: inline-block;
+            color: #cfcfcf;
+            font-size: @--size-base - 2;
+            .iconfont {
+                font-size: @--size-base;
+            }
+            + view {
+                padding-left: 20px;
+            }
+        }
+        &--tag {
+            position: relative;
+            display: inline-block;
+            font-size: @--size-base - 2;
+            color: #989898;
+            text-align: center;
+            padding: 0 8px;
+            &:first-child {
+                padding: 0 8px 0 0;
+                &::after {
+                    border: 0;
+                }
+            }
+            &::after {
+                content: "";
+                position: absolute;
+                top: 3px;
+                right: 0;
+                width: 200%;
+                height: ~'calc(200% - 8px)';
+                transform: scale(.5);
+                transform-origin: 0 0;
+                pointer-events: none;
+                box-sizing: border-box;
+                border: 0 solid #989898;
+                border-right-width: 1px;
+            }
+        }
+    }
+    &__fd {
+        .display-flex();
+        align-items: center;
+        padding: 10px 0;
+        height: 32px;
+        &--menu {
+            .iconfont {
+                display: inline-block;
+                color: #989898;
+                font-size: @--size-base;
+            }
+        } 
+    }
+}
+
+// 工地
+.wuli-sites {
+    box-sizing: border-box;
+    padding: 5px 15px 0;
+    &__hd {
+        position: relative;
+        padding: 0 15px;
+        height: 150px;
+        overflow: hidden;
+        &--img {
+            width: 100%;
+            height: 150px;
+        }
+        &--progress {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 104px;
+            height: 25px;
+            line-height: 25px;
+            font-size: @--size-base - 2;
+            color: @--color-white;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.8);
+            border: 2px solid @--color-white;
+            .border-radius(15px);
+            .transform(translate(-50%, -50%));
+        }
+    }
+    &__bd {
+        position: relative;
+        padding: 0 15px;
+        &--inner {
+            margin: 12px 0 15px;
+            padding: 0 10px;
+            .display-flex();
+            align-items: center;
+        }
+        &--title {
+            .box-flex(1);
+            padding-right: 10px;
+            font-size: @--size-base;
+            color: #282828;
+            font-weight: bolder;
+            .text-overflow();
+        }
+        &--time {
+            padding: 4px 8px;
+            font-size: @--size-base - 3;
+            color: #838083;
+            letter-spacing: 1px;
+            background-color: #f4f4f4;
+        }
+    }
+    &__fd {
+        position: relative;
+        margin: 10px 0 20px;
+        width: 100%;
+        height: 2px;
+        &::after {
+            content: "";
+            position: absolute;
+            left: 15px;
+            right: 0;
+            width: ~'calc(200% - 60px)';
+            height: 200%;
+            transform: scale(.5);
+            transform-origin: 0 0;
+            pointer-events: none;
+            box-sizing: border-box;
+            border: 0 solid #ccc;
+            border-bottom-width: 1px;
+        }
+    }
+    &__item {
+        &:last-child {
+            .wuli-sites__fd {
+                display: none;
+            }
+        }
+    }
+}
+
+// 评论
+.wuli-comments {
+    box-sizing: border-box;
+    padding: 5px 15px 0;
+    &__tags {
+        padding: 10px 15px 5px;
+        background-color: @--color-white;
+        .clearfix();
+    }
+    &__tag {
+        display: inline-block;
+        margin-right: 8px;
+        margin-bottom: 5px;
+        padding: 5px 12px;
+        color: #666666;
+        font-size: @--size-base - 2;
+        text-align: center;
+        background-color: #fdecea;
+        .border-radius(15px);
+    }
+    &__bd {
+        &--info {
+            .display-flex();
+        }
+        &--avater {
+            width: 32px;
+            height: 32px;
+            .border-radius(50%);
+        }
+        &--inner {
+            .box-flex(1);
+            margin-left: 8px;
+        }
+    }
+    &__item {
+        position: relative;
+        padding: 10px 15px;
+        background-color: @--color-white;
+        &--hd {
+            .display-flex();
+            align-items: center;
+        }
+        &--title {
+            .box-flex(1);
+            font-size: @--size-base;
+            font-weight: bolder;
+        }
+        &--edit {
+            .iconfont {
+                font-size: @--size-base + 2;
+                color: #b6b6b6;
+            }
+        }
+        &--bd {
+            margin: 5px 0 10px;
+            padding-right: 25px;
+            font-size: @--size-base;
+            color: #666;
+            line-height: 1.6;
+        }
+        &--fd {
+            .display-flex();
+            align-items: center;
+        }
+        &--inner {
+            .box-flex(1);
+            padding-left: 40px;
+            font-size: @--size-base - 2;
+            color: #989898;
+        }
+        &--time {
+            margin-right: 10px;
+        }
+        &--reply {
+            position: relative;
+            box-sizing: border-box;
+            .iconfont {
+                font-size: @--size-base + 10;
+                color: #6a7180;
+            }
+        }
+        &:last-child {
+            .wuli-comments__fd {
+                display: none;
+            }
+        }
+    }
+    &__reply {
+        box-sizing: border-box;
+        position: relative;
+        margin: 10px 25px 0 30px;
+        min-height: 37px;
+        height: auto;
+        line-height: 1.6;
+        font-size: @--size-base - 2;
+        background-color: #f4f4f4;
+        &::before {
+            content: "";
+            position: absolute;
+            left: 27px;
+            top: -6px;
+            .triangle(bottom, 6px, #f4f4f4);
+        }
+        &--total {
+            height: 36px;
+            padding: 0 10px;
+            .display-flex();
+            align-items: center;
+            color: #f76603;
+            & + view {
+                border-top: 1px solid #e8e8e8;
+            }
+        }
+        &--item {
+            position: relative;
+            padding: 8px 10px 0;
+            &:last-child {
+                padding: 8px 10px;
+            }
+        }
+        .reply-name {
+            min-width: 60px;
+            color: #f76603;
+        }
+        .reply-info {
+            color: #333;
+        }
+        .reply-person {
+            .box-flex(1);
+            .text-overflow();
+        }
+        .reply-total {}
+    }
+    &__fd {
+        position: relative;
+        margin: 25px 0 0;
+        width: 100%;
+        height: 2px;
+        &::after {
+            content: "";
+            position: absolute;
+            left: 15px;
+            right: 0;
+            width: ~'calc(200% - 60px)';
+            height: 200%;
+            transform: scale(.5);
+            transform-origin: 0 0;
+            pointer-events: none;
+            box-sizing: border-box;
+            border: 0 solid #ccc;
+            border-bottom-width: 1px;
+        }
+    }
+    &__btns {
+        width: 100%;
+        .iconfont {
+            color: #ff674f;
+            font-size: @--size-base;
+            margin-right: 5px;
+        }
+        .wuli-btn {
+            display: block;
+            font-size: @--size-base;
+            color: #ff674f;
+        }
+    }
+    .wuli-popup__mask {
+        background: none;
+    }
+    .wuli-popup__container {
+        position: absolute;
+        top: -5px;
+        right: 32px;
+        padding: 0 5px;
+        width: 130px;
+        height: 32px;
+        .display-flex();
+        align-items: center;
+        background-color: #373a41;
+        .border-radius();
+        .item-btn {
+            .box-flex(1);
+            color: @--color-white;
+            text-align: center;
+            font-size: @--size-base - 2;
+        }
+        .iconfont {
+            margin-right: 3px;
+            font-size: @--size-base + 1;
+            color: @--color-white;
+        }
+    }
+}
+
+// 公司
+.wuli-companys {
+    box-sizing: border-box;
+    padding: 5px 15px 0;
+    &__hd {
+        padding: 15px;
+        .display-flex();
+        align-items: center;
+        &--lt {
+            .display-flex();
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border: 1px solid #e2e2e2;
+            .border-radius(7px);
+        }
+        &--logo {
+            width: 25px;
+            height: 25px;
+        }
+        &--rt {
+            margin-left: 10px;
+            .box-flex(1);
+        }
+        &--info {
+            
+        }
+        &--entry {
+            float: right;
+            width: 62px;
+            height: 20px;
+            line-height: 20px;
+            font-size: @--size-base - 2;
+            color: @--color-white;
+            text-align: center;
+            .linear-gradient(right, #ff8b00, #ff5500);
+            .border-radius(10px);
+        }
+        &--title {
+            margin-right: 64px;
+            font-size: @--size-base;
+            color: #282828;
+            font-weight: bolder;
+        }
+        &--tags {
+            margin-top: 3px;
+            width: 100%;
+        }
+        &--tag {
+            float: left;
+            position: relative;
+            box-sizing: border-box;
+            line-height: 16px;
+            padding: 0 5px;
+            .border-radius(8px);
+            font-size: @--size-base - 3;
+            background: #ff002d;
+            text-align: center;
+            color: @--color-white;
+            & + & {
+                margin-left: 5px;
+                background: #fe7532;
+            }
+        }
+    }
+    &__item {
+
+    }
+    &__bd {
+        position: relative;
+        padding: 0 15px;
+        &::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            width: 200%;
+            height: 200%;
+            transform: scale(.5);
+            transform-origin: 0 0;
+            pointer-events: none;
+            box-sizing: border-box;
+            border: 0 solid #ccc;
+            border-bottom-width: 1px;
+        }
+        &--inner {
+            .display-flex();
+            align-items: center;
+        }
+        .inner-tags {
+            font-size: @--size-base - 2;
+        }
+        .inner-tag {
+            display: inline-block;
+            color: #989898;
+        }
+        .inner-number {
+            display: inline-block;
+            color: #ff5b00;
+        }
+        .inner-center {
+            .box-flex(1);
+            text-align: center;
+        }
+    }
+    &__fd {
+        margin-top: 15px;
+        &--title {
+            padding: 10px 15px;
+            color: #333333;
+            font-size: @--size-base;
+            .text-overflow();
+        }
+        &--map {
+            box-sizing: border-box;
+            height: 96px;
+            .setion-map {
+                width: 100%;
+                height: 96px;
+            }
+        }
+        &--menu {
+            height: 40px;
+            .display-flex();
+            align-items: center;
+            justify-content: center;
+            .menu-item {
+                position: relative;
+                .box-flex(1);
+                text-align: center;
+                font-size: @--size-base;
+                color: #666666;
+                &::after {
+                    content: "";
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    width: 200%;
+                    height: 200%;
+                    transform: scale(.5);
+                    transform-origin: 0 0;
+                    pointer-events: none;
+                    box-sizing: border-box;
+                    border: 0 solid #ccc;
+                    border-right-width: 1px;
+                }
+                &:first-child::after {
+                    border: 0;
+                }
+                .iconfont {
+                    margin-right: 5px;
+                }
+            }
+        }
+    }
+}
+
+// 活动
+.wuli-activity {
+    margin-top: 10px;
+    width: 100%;
+    height: 143px;
+    &__bd {
+        width: 100%;
+        height: 143px;
+    }
+}
+
+// 技术支持
+.wuli-helper {
+    @--line-color: #c4c4c4;
+    position: relative;
+    width: 100%;
+    margin: 30px auto 10px;
+    line-height: 20px;
+    text-align: center;
+    vertical-align: middle;
+    &__tips {
+        padding: 0 10px;
+        margin-bottom: 3px;
+        position: relative;
+        top: -9px;
+        display: inline-block;
+        vertical-align: middle;
+        height: 20px;
+        line-height: 20px;
+        font-size: @--size-base - 1;
+        color: @--color-info;
+        background-color: #F9F9F9; 
+        z-index: 1;
+    }
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 200%;
+        height: 200%;
+        transform: scale(.5);
+        transform-origin: 0 0;
+        pointer-events: none;
+        box-sizing: border-box;
+        border: 0 solid @--line-color;
+        border-top-width: 1px;
+    }
+}

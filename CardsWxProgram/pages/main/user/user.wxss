@@ -1,0 +1,17 @@
+/* pages/main/user/user.wxss */
+.wuli-panel {
+    margin-top: 20rpx;
+}
+.wuli-panel:first-child {
+    margin-top: 0;
+}
+.wuli-cell {
+    box-sizing: border-box;
+    height: 104rpx;
+}
+.wuli-cell__avater {
+    width: 64rpx;
+    height: 64rpx;
+    border-radius: 50%;
+    vertical-align: middle;
+}

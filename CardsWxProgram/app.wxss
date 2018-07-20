@@ -1,0 +1,95 @@
+/**app.wxss**/
+
+.container {
+    background: #F9F9F9;
+    overflow: hidden;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+.container::before {
+    position: fixed;
+    top: 0;
+    left: 0;
+    content: ' ';
+    width: 100%;
+    height: 1px;
+    background-color: #ebecf2;
+    z-index: 1;
+}
+
+.wuli-panel {
+    position: relative;
+    background: #fff;
+    overflow: hidden;
+}
+
+
+/* 文字限制行数 */
+
+.wuli-ellipsis__l2 {
+    max-height: 40px;
+    line-height: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.wuli-ellipsis__l3 {
+    line-height: 1.4;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.wuli-helper__tips {
+    font-size: 28rpx;
+}
+
+.wuli-helper__tips::after {
+    border: 0;
+}
+
+.kefubtn {
+    border: none;
+    background: initial;
+    padding: none;
+    border-radius: inherit;
+    line-height: inherit;
+    box-sizing: inherit;
+    -webkit-tap-highlight-color: inherit;
+    padding-left: 0;
+    padding-right: 0;
+    font-size: inherit;
+}
+
+.kefubtn::after, .wuli-btn__share::after {
+    border: 0 none;
+}
+
+.wuli-btn__share {
+    width: 44px;
+    height: 44px;
+    top: 0;
+    opacity: 0;
+}
+
+.icon-zhuanfa {
+    color: #00a0e9 !important;
+}
+
+.fade-in__animate {
+    transition: all 500ms ease;
+    transform: translate3d(0, 0, 0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    perspective: 1000;
+}
+
+@import './assets/iconfont.wxss';
+@import './assets/index.wxss';

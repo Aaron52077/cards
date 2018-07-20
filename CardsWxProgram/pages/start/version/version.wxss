@@ -1,0 +1,94 @@
+/* pages/start/version/version.wxss */
+
+.container {
+    background-color: #fff;
+}
+
+.version__hd {
+    width: 100%;
+    height: 100%;
+    margin-bottom: 30rpx;
+    background-color: #ebecf2;
+}
+.version__hd image {
+    width: 100%;
+    height: 100%;
+}
+.version .wuli-panel {
+    margin-bottom: 70px;
+}
+.version__item {
+    margin: 0 30rpx;
+    height: 232rpx;
+}
+
+.version__item--content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 40rpx;
+    height: 160rpx;
+    border: 2rpx solid #e1e1e1;
+    border-radius: 6rpx;
+}
+
+.version__item--content.is-active {
+    border-color: #90d3ed;
+    background-color: #d9f4ff;
+}
+
+.version__item--title {
+    flex: 1;
+}
+
+.version__item--info {
+    height: 44px;
+    line-height: 20px;
+    font-size: 34rpx;
+    color: #282828;
+}
+
+.version__item--time {
+    font-size: 24rpx;
+    color: #989898;
+}
+
+.version__item--inner {
+    font-size: 24rpx;
+    color: #f54544;
+}
+
+.version__item--inner text {
+    font-size: 48rpx;
+}
+
+.version__item--descs {
+    padding: 0 8rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 72rpx;
+}
+
+.version__item--desc {
+    flex: 1;
+    font-size: 24rpx;
+}
+
+.wuli-btn__fixed {
+    box-sizing: border-box;
+    position: fixed;
+    display: flex;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    
+}
+.wuli-btn__fixed .wuli-btn__primary {
+    width: 100%;
+    height: 47px;
+    line-height: 47px;
+    font-size: 17px;
+    background-color: #13b6f7;
+    border-radius: 3px;
+}

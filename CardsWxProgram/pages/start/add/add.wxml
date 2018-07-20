@@ -1,0 +1,70 @@
+<!--pages/start/add/add.wxml-->
+<import src="/components/field/index.wxml" />
+
+<view class="card-edit container">
+    <form bindsubmit="formSubmit" bindreset="formReset">
+        <view class="card-edit__hd wuli-panel">
+            <view class="card-edit__hd-bg">
+                <block wx:if="{{cardphotoMax}}">
+                    <image class="wuli-uploader__img" src="{{cardphotoMax}}" mode="aspectFill"></image>
+                    <view class="card-edit__hd--btn" data-cmd="avatar" bindtap="chooseImage">
+                        <image class="card-edit__hd--img" src="/image/upload_add.png" mode="aspectFit"></image>
+                    </view>
+                </block>
+                <block wx:else>
+                    <image class="card-edit__hd-img" bindtap='chooseImage' data-cmd="avatar" src="/image/upload_img.png" mode="aspectFit"></image>
+                </block>
+            </view>
+            <template is="wuli-field" data="{{ ...config.form.name, value:name }}"></template>
+            <template is="wuli-field" data="{{ ...config.form.position, value:position }}"></template>
+            <template is="wuli-field" bindinput="bindKeyInput" data="{{ ...config.form.goodat, value:goodat }}"></template>
+        </view>
+        <view class="card-edit__bd wuli-panel">
+            <template is="wuli-field" data="{{ ...config.form.phone, value:phone }}"></template>
+            <template is="wuli-field" data="{{ ...config.form.wechatNum,value:wechatNum }}"></template>
+        </view>
+        <view class="card-edit__fd wuli-panel">
+            <view class="wuli-cell wuli-field">
+                <view class="wuli-cell__hd wuli-field__title">公司*</view>
+                <input type="text" id="companyname" placeholder="请输入公司名称" value='{{companyname}}' bindinput="handleWuliFieldChange" placeholder-style="color:#c2c2c2" class="wuli-field__input wuli-cell__bd" />
+                <!-- <view class="wuli-cell__ft">
+                    <button class="wuli-btn wuli-btn__mini wuli-btn__danger" catchtap="goCersion">加入企业版</button>
+                </view> -->
+            </view>
+            <view class="wuli-cell wuli-field">
+                <view class="wuli-cell__hd wuli-field__title">地址*</view> 
+                <block wx:if="{{hasLocation === false}}">
+                   <view wx:if="{{companyAddress}}" class="wuli-field__input wuli-cell__bd" bindtap="chooseLocation">{{companyAddress}}</view>
+                    <view wx:else style="color:#c2c2c2" class="wuli-field__input wuli-cell__bd" bindtap="chooseLocation">请填写公司地址</view> 
+                </block>
+                <block wx:else>
+                    <view class="wuli-cell__bd wuli-field__input" catchtap="chooseLocation">{{companyAddress}}</view>
+                </block>
+            </view>
+            <template is="wuli-field" data="{{ ...config.form.companyTel, value:companyTel }}"></template>
+            <view class="wuli-cell wuli-field card-edit__fd-title">
+                <view class="wuli-cell__hd wuli-field__title">LOGO</view>
+                <view class="wuli-field__input wuli-cell__bd">
+                    <block wx:if="{{companylogo}}">
+                        <image class="card-edit__fd-icon" src="{{companylogo}}" data-cmd="logo" mode="aspectFill" bindtap="chooseImage"></image>
+                    </block>
+                    <block wx:else>
+                        <image class="card-edit__fd-icon" src="/image/upload_btn.png" bindtap="chooseImage" data-cmd="logo" mode="aspectFit"></image>
+                    </block>
+                    <view class="card-edit__fd-desc">*请上传公司.png</view>
+                </view>
+            </view>
+        </view>
+        <view class="card-edit__ft wuli-panel">
+            <view class="wuli-cell wuli-field">
+                <view class="wuli-cell__hd wuli-field__title">签名*</view>
+                <textarea name="introduction" id='introduction' value="{{introduction}}" placeholder="这是我的名片，有着我的过往，和我俩的未来" class="wuli-field__input wuli-cell__bd"
+                    placeholder-class="wuli-field__placeholder" id="introduction" bindinput="handleWuliFieldChange" cursor-spacing="30" adjust-position="{{true}}" bindfocus="handleWuliFieldFocus"></textarea>
+            </view>
+        </view>
+
+        <view class="wuli-btns">
+            <button class="wuli-btn wuli-btn__primary" formType="submit">保 存</button>
+        </view>
+    </form>
+</view>

@@ -1,0 +1,33 @@
+<!--pages/main/user_edit/upload.wxml-->
+<import src="/components/field/index.wxml" />
+
+<view class="card-edit container">
+    <form bindsubmit="formSubmit" bindreset="formReset">
+        <view class="card-edit__hd wuli-panel">
+            <view class="card-edit__hd-bg">
+                <block wx:if="{{imageList.length}}">
+                    <image class="wuli-uploader__img" wx:for="{{imageList}}" wx:for-item="image" wx:key="" src="{{image}}" data-src="{{image}}" mode="aspectFill" bindtap="previewImage"></image>
+                </block>
+                <block wx:else>
+                    <image class="card-edit__hd-img" src="/image/upload_img.png" mode="aspectFit"  bindtap="chooseImage"></image>
+                </block>
+            </view>
+            <template is="wuli-field" data="{{ ...config.form.name, value:name }}"></template>
+            <template is="wuli-field" data="{{ ...config.form.job, value:job }}"></template>
+            <template is="wuli-field" data="{{ ...config.form.tel, value:tel }}"></template>
+            <template is="wuli-field" data="{{ ...config.form.wechat }}"></template>
+        </view>
+        <view class="card-edit__bd wuli-panel">
+            <template is="wuli-field" data="{{ ...config.form.company, value:company }}"></template>
+            <view class="wuli-cell wuli-field">
+                <view class="wuli-cell__hd wuli-field__title">签名</view>
+                <textarea name="describe" value="{{desc}}" placeholder="这是我的名片，有着我的过往，和我俩的未来" class="wuli-field__input wuli-cell__bd" placeholder-class="wuli-field__placeholder"
+                    bindinput="handleWuliFieldChange" cursor-spacing="30" bindfocus="handleWuliFieldFocus"></textarea>
+            </view>
+        </view>
+
+        <view class="wuli-btns">
+            <button class="wuli-btn wuli-btn__primary" formType="submit">确认发布</button>
+        </view>
+    </form>
+</view>

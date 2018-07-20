@@ -1,0 +1,64 @@
+<!--pages/main/activity_edit/upload.wxml-->
+<import src="/components/field/index.wxml" />
+<import src="/components/switch/index.wxml" />
+
+<form bindsubmit="formSubmit" bindreset="formReset">
+    <view class="container wuli-upload">
+        <view class="wuli-panel">
+            <template is="wuli-field" data="{{ ...form.name, value:formdata.name }}"></template>
+            <view class="wuli-upload__textarea">
+                <template is="wuli-field" data="{{ ...form.info, value:formdata.info }}"></template>
+                <view class="wuli-upload__bd">
+                    <view class="wuli-upload__item" wx:for="{{atlasList}}" wx:key="index">
+                        <image class="wuli-upload__item--img" src="{{item}}" bindtap='choseImage' mode="aspectFill"></image>
+                    </view>
+                    <view class="wuli-upload__item">
+                        <image class="wuli-upload__item--img" src="/image/upload_btn.png" bindtap='choseImage' mode="aspectFit"></image>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="wuli-panel wuli-upload__fd">
+            <view class="wuli-cell wuli-field">
+                <view class="wuli-cell__hd wuli-field__title">开始时间</view>
+                <picker class="wuli-cell__bd wuli-field__input" mode="date" value="{{formdata.starttime}}" start="2018-06-01" data-cmd="start" bindchange="bindDateChange">
+                    <view class="picker" style='color:grey'>
+                        {{splacehodel}}{{formdata.starttime}}
+                    </view>
+                </picker>
+            </view>
+            <view class="wuli-cell wuli-field">
+                <view class="wuli-cell__hd wuli-field__title">结束时间</view>
+                <picker class="wuli-cell__bd wuli-field__input" mode="date" value="{{formdata.endtime}}" start="2018-06-01" data-cmd="ent" bindchange="bindDateChange">
+                    <view class="picker" style='color:grey'>
+                       {{eplacehodel}} {{formdata.endtime}}
+                    </view>
+                </picker>
+            </view>
+        </view>
+        <!-- <view class="wuli-panel wuli-upload__fd">
+            <view class="wuli-cell wuli-cell__switch">
+                <view class="wuli-cell__bd">报名需手机号</view>
+                <view class="wuli-cell__ft">
+                    <template is="wuli-switch" data="{{ ...isNeedTel, componentId: 'isNeedTel' }}" />
+                </view>
+            </view>
+            <view class="wuli-cell wuli-cell__switch">
+                <view class="wuli-cell__bd">报名需真实姓名</view>
+                <view class="wuli-cell__ft">
+                    <template is="wuli-switch" data="{{ ...isNeedRealName, componentId: 'isNeedRealName' }}" />
+                </view>
+            </view>
+            <view class="wuli-cell wuli-cell__switch">
+                <view class="wuli-cell__bd">报名需楼盘地址</view>
+                <view class="wuli-cell__ft">
+                    <template is="wuli-switch" data="{{ ...isNeedAddress, componentId: 'isNeedAddress' }}" />
+                </view>
+            </view>
+        </view> -->
+    </view>
+    <!-- 固定栏 -->
+    <view class="wuli-btns wuli-btn__fixed">
+        <button class="wuli-btn wuli-btn__info {{ show ? 'wuli-btn__primary': ''}}" formType="submit">确认发布</button>
+    </view>
+</form>

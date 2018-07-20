@@ -1,0 +1,53 @@
+<!--pages/main/activity_list/list.wxml-->
+<wxs module="filter" src="../../../utils/filter.wxs"></wxs>
+
+<view class="container wuli-activity">
+    <scroll-view style='height:{{windowsHeight}}px' scroll-y='true' bindscrolltolower="loadMore" lower-threshold="50px" enable-back-to-top="true">
+        <view class="wuli-activity__edit" wx:if="{{uinfo.id==cur_uid}}" bindtap="addHanle">添加活动</view>
+        <navigator class="wuli-activity__item wuli-panel" wx:for="{{ActivityList}}" wx:key="" url="/pages/main/activity_detail/detail?id={{item.id}}&type={{item.type}}" hover-class="none">
+            <image class="wuli-activity__item--img" src="{{filter.formatImg(item.cover)}}" mode="aspectFill"></image>
+            <view class="wuli-activity__item--inner">
+                <view class="wuli-activity__item--title">{{item.name}}</view>
+                <view class="wuli-activity__item--desc">
+                    <view class="desc-hits">
+                        <i class="iconfont icon-yanjing"></i> {{item.hits}}</view>
+                    <view class="desc-menu" data-id="{{item.id}}" data-index="{{index}}" data-type="{{item.type}}" wx:if="{{uinfo.id==cur_uid}}" catchtap="thumbHanle">
+                        <i class="iconfont icon-more"></i>
+                    </view>
+                </view>
+            </view>
+        </navigator>
+        <block wx:if="{{loading}}">
+            <view class="wuli-loadmore">
+                <view class="wuli-loadmore__tips">玩命的加载中...</view>
+            </view>
+        </block>
+        <block wx:else>
+            <view class="wuli-loadmore wuli-loadmore__nodata">
+                <view class="wuli-loadmore__tips">亲，我是有底线的...</view>
+            </view>
+        </block>
+    </scroll-view>
+</view>
+<!-- layer -->
+<view class="wuli-edit wuli-popup wuli-popup__bottom {{ showBottomPopup ? 'wuli-popup__show' : ''}}">
+    <view class="wuli-popup__mask" catchtap="toggleBottomPopup"></view>
+    <view class="wuli-popup__container">
+        <view class="wuli-edit__bd">
+            <view class="wuli-edit__item" bindtap="handledit">
+                <view class="wuli-edit__item--icon">
+                    <i class="iconfont icon-bianji"></i>
+                </view>
+                <view class="wuli-edit__item--desc">编辑</view>
+            </view>
+            <view class="wuli-edit__item" bindtap='handleDel'>
+                <view class="wuli-edit__item--icon">
+                    <i class="iconfont icon-shanchu1"></i>
+                </view>
+                <view class="wuli-edit__item--desc">删除</view>
+            </view>
+
+        </view>
+        <view class="wuli-edit__fd" catchtap="toggleBottomPopup">取消</view>
+    </view>
+</view>

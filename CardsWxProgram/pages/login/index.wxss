@@ -1,0 +1,39 @@
+.login-wrapper {
+    margin-top: 116rpx;
+    padding: 0 90rpx;
+}
+
+.login-wrapper .swiper-slide__border {
+    height: 880rpx;
+}
+
+.login-wrapper__bd {
+    justify-content: flex-start;
+}
+
+.login__bd {
+    margin: 72rpx 0 88rpx;
+    font-size: 24rpx;
+    text-align: center;
+    color: #666;
+}
+
+.login__fd {
+    box-sizing: border-box;
+    display: block;
+    position: relative;
+    padding: 0 15px;
+    width: 100%;
+}
+
+.wuli-btn {
+    color: #383838;
+    border-color: #dadada;
+    font-size: 24rpx;
+    line-height: 68rpx;
+    height: 68rpx;
+}
+
+.swiper-slide__info {
+    height: 320rpx;
+}

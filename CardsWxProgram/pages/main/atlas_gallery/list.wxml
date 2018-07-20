@@ -1,0 +1,13 @@
+<!--pages/main/atlas_gallery/list.wxml-->
+<view class="wuli-gallery">
+    <swiper class="wuli-gallery__swiper" current="{{ current }}" bindchange="bindchange" hidden="{{ !urls.length }}">
+        <block wx:for="{{ urls }}" wx:key="{{ item }}">
+            <swiper-item class="wuli-gallery__item">
+                <image class="wuli-gallery__img" mode="aspectFit" src="{{item}}"></image>
+            </swiper-item>
+        </block>
+    </swiper>
+    <view class="wuli-gallery__opr">
+        <view class="wuli-gallery__desc">{{title}}</view>
+    </view>
+</view>

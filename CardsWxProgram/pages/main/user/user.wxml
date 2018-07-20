@@ -1,0 +1,32 @@
+<view class="container">
+    <view class="wuli-panel">
+        <navigator url='/pages/start/add/add' class="wuli-cell wuli-cell__access" hover-class='none'>
+            <view class="wuli-cell__bd">个人信息</view>
+            <image class="wuli-cell__avater" src="{{userInfo.headimgurl}}" mode="aspectFill"></image>
+            <view class="wuli-cell__ft"></view>
+        </navigator>
+        <view class="wuli-cell">
+            <view class="wuli-cell__bd">认证信息</view>
+            <view class="wuli-cell__ft" wx:if="{{userInfo.cardCompanyId===0}}">个人认证</view>
+            <view class="wuli-cell__ft" wx:else>企业认证</view>
+        </view>
+        <view class="wuli-cell">
+            <view class="wuli-cell__bd">电话</view>
+            <view class="wuli-cell__ft">{{userInfo.phone}}</view>
+        </view>
+        <view class="wuli-cell">
+            <view class="wuli-cell__bd">微信号</view>
+            <view class="wuli-cell__ft">{{userInfo.wechatNum}}</view>
+        </view>
+        <navigator class="wuli-cell wuli-cell__access" url="/pages/main/index?curuid={{userInfo.id}}">
+            <view class="wuli-cell__bd">个人主页</view>
+            <view class="wuli-cell__ft"></view>
+        </navigator>
+    </view>
+    <view class="wuli-panel">
+        <button class="kefubtn wuli-cell wuli-cell__access" open-type="contact" session-from="weapp" style="text-align:left;">
+            <view class="wuli-cell__bd">联系客服</view>
+            <view class="wuli-cell__ft"></view>
+        </button>
+    </view>
+</view>

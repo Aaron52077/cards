@@ -1,0 +1,30 @@
+<!--pages/start/version/version.wxml-->
+<view class="container version">
+    <view class="version__hd">
+        <image src="/image/banner_01.jpg" mode="widthFix"></image>
+    </view>
+    <view class="wuli-panel">
+        <view class="version__item" wx:for="{{VersionProducts}}" wx:for-item="item" data-index="{{index}}" bindtap="chooseHanle"
+        wx:key="">
+            <view>
+                <view class="version__item--content {{ selectdIndex == index ? 'is-active': '' }}">
+                    <view class="version__item--title">
+                        <view class="version__item--info">{{item.name}}</view>
+                        <view class="version__item--time">{{item.summary}}</view>
+                    </view>
+                    <view class="version__item--inner desc-color">￥
+                        <text>{{item.price}}</text> {{item.unit}}
+                    </view>
+                </view>
+                <view class="version__item--descs">
+                    <view class="version__item--desc version__item--time" wx:for="{{item.Descs}}" wx:for-item="p" wx:key="">
+                        <text class="version__item--inner">· {{p.value}} </text>{{p.name}}</view>
+                </view>
+            </view>
+        </view>
+    </view>
+    
+    <view class="wuli-btns wuli-btn__fixed">
+        <button class="wuli-btn wuli-btn__primary" bindtap="buynow">确认购买</button>
+    </view>
+</view>

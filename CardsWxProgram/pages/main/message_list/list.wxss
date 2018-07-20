@@ -1,0 +1,79 @@
+/* pages/main/message_list/list.wxss */
+
+.container {
+    background-color: #ebecf2;
+}
+
+.wuli-message {
+    padding: 0 10px;
+}
+
+.wuli-message__item {
+    position: relative;
+    text-align: center;
+}
+
+.wuli-message__hd {
+    display: inline-block;
+    margin: 15px auto;
+    padding: 2rpx 12rpx;
+    font-size: 11px;
+    color: #fff;
+    background-color: #dadada;
+    border-radius: 3px;
+}
+
+.wuli-message__bd {
+    box-sizing: border-box;
+    display: flex;
+    padding: 15px;
+    border-radius: 3px;
+    box-shadow: 0 5px 15px rgba(14, 16, 21, .1);
+}
+
+.wuli-message__img, .wuli-message__avater {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+}
+
+.wuli-message__img {
+    background-color: #eee;
+}
+
+.wuli-message__info {
+    flex: 1;
+    padding-left: 10px;
+    line-height: 1.5;
+    text-align: left;
+}
+
+.wuli-message__title {
+    font-size: 14px;
+    color: #282828;
+}
+
+.wuli-message__desc {
+    font-size: 12px;
+    color: #989898;
+}
+
+.wuli-message__badge {
+    position: absolute;
+    top: 0;
+    right: 15px;
+    height: 1.6em;
+    min-width: 1.6em;
+    line-height: 1.6;
+    padding: 0 .4em;
+    font-size: 16px;
+    border-radius: .8em;
+    background: #f44;
+    text-align: center;
+    white-space: nowrap;
+    transform: translateX(50%) scale(.5);
+    transform-origin: center;
+    z-index: 10;
+    box-shadow: 0 0 0 2px #fff;
+    box-sizing: border-box;
+}

@@ -1,0 +1,48 @@
+<!--pages/main/master_log/log.wxml-->
+<view class="container wuli-comment">
+    <form bindsubmit="formSubmit">
+        <view class="wuli-panel wuli-upload__fd">
+            <view class="wuli-cell wuli-cell__access">
+                <view class="wuli-cell__hd wuli-field__title">工地状态</view>
+                <picker class="wuli-cell__bd" bindchange="bindSelectChange" data-type='stage' value="{{item.id}}" range-key='name' range="{{filter_stages}}">
+                    {{filter_stages[statusIndex].name}}
+                </picker>
+                <view class="wuli-cell__ft"></view>
+            </view>
+            <view class="wuli-cell wuli-cell__access">
+                <view class="wuli-cell__hd wuli-field__title">当前位置</view>
+                <block wx:if="{{hasLocation === false}}">
+                    <view class="wuli-cell__bd" bindtap="getLocation">点击获取位置</view>
+                </block>
+                <block wx:if="{{hasLocation === true}}">
+                    <view class="wuli-cell__bd" bindtap="getLocation">{{formdata.address}}</view>
+                </block>
+            </view>
+        </view>
+        <view class="wuli-panel">
+            <view class="wuli-cell wuli-field">
+                <textarea class="wuli-field__input wuli-cell__bd" name="info" placeholder='{{placehoder}}' minlength="{{min}}" maxlength="{{max}}"
+                    bindinput="textareaHanle"></textarea>
+                <text class="wuli-comment__num">{{ totalNum | 0 }}/{{max}}</text>
+                <text class="wuli-comment__desc">{{placeholderText}}</text>
+            </view>
+            <view class="wuli-cell wuli-upload__ft">
+                <view class="wuli-cell__bd">
+                    <view class="wuli-upload__item" wx:for="{{atlasList}}" wx:key="">
+                        <view class="wuli-upload__item--del" bindtap="delHandle" data-index="{{index}}">
+                            <i class="iconfont icon-cha"></i>
+                        </view>
+                        <image class="wuli-upload__item--img" src="{{item}}" mode="aspectFill"></image>
+                    </view>
+                    <view class="wuli-upload__item">
+                        <image class="wuli-upload__item--img" bindtap='choseImage' src="/image/upload_btn.png" mode="aspectFit"></image>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <!-- 固定栏 -->
+        <view class="wuli-btns wuli-btn__fixed">
+            <button class="wuli-btn wuli-btn__primary" formType="submit" disabled='{{isdisable}}'>提交日志</button>
+        </view>
+    </form>
+</view>

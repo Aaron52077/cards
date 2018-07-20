@@ -1,0 +1,26 @@
+<view class="container">
+    <view class="swiper-slide login-wrapper">
+        <view class="swiper-slide__border">
+            <view class="swiper-slide__bd">
+                <block wx:if="{{defaultData.gender}}">
+                    <block wx:if="{{defaultData.gender === 1}}">
+                        <image class="avater-default" src="/image/avatar_man.png" mode="aspectFit"></image>
+                    </block>
+                    <block wx:else>
+                        <image class="avater-default" src="/image/avatar_woman.png" mode="aspectFit"></image>
+                    </block>
+                </block>
+                <block wx:else>
+                    <image class="img-default" src="/image/img_01.jpg" mode="widthFix"></image>
+                </block>
+            </view>
+            <view class="swiper-slide__info login-wrapper__bd">
+                <view class="login__bd">会员登录</view>
+                <view class="login__fd">
+                    <button class="wuli-btn" open-type="getUserInfo" lang='zh_CN' bindgetuserinfo="authorLogin">登录</button>
+                    <!-- <view wx:else>请升级微信版本</view> -->
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

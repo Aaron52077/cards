@@ -1,0 +1,164 @@
+@import '_var';
+@import '_mixins';
+
+.wuli-ani-dial {
+    position: relative;
+    z-index: 1500;
+    &__action {
+        position: relative;
+        right: 0;
+        bottom: 0;
+        width: 100rpx;
+        height: 100rpx;
+        .border-radius(50%);
+        z-index: 1500;
+        background-color: #E40A5D;
+        color: @--color-white;
+        overflow: hidden;
+        -webkit-transition-duration: .3s;
+                transition-duration: .3s;
+        .display-flex();
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 0 8rpx rgba(0, 0, 0, 0.14), 0 8rpx 16rpx rgba(0, 0, 0, 0.28);
+      }
+      &__action--hover {
+        -webkit-transition-duration: 0s;
+                transition-duration: 0s;
+        opacity: .8 !important;
+      }
+      &__icon {
+        display: inline-block;
+        // width: 40rpx;
+        // height: 40rpx;
+        // font-size: @--size-base + 6;
+        line-height: 1;
+      }
+      &__buttons {
+        position: absolute;
+        width: 100%;
+        left: 50%;
+        margin-left: -50%;
+        bottom: 100%;
+        .display-flex();
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: reverse;
+        -webkit-flex-direction: column-reverse;
+                flex-direction: column-reverse;
+        visibility: hidden;
+        pointer-events: none;
+      }
+      &__button {
+        height: 88rpx;
+        width: 88rpx;
+        opacity: 0;
+        color: #fff;
+        border-radius: 50%;
+        position: relative;
+        z-index: 1;
+        overflow: visible;
+        background-color: @--color-white;
+        -webkit-transition-duration: .3s;
+                transition-duration: .3s;
+        .display-flex();
+        align-items: center;
+        justify-content: center;
+        -webkit-transform: translate3d(0, 0, 0) scale(0.3);
+                transform: translate3d(0, 0, 0) scale(0.3);
+        -webkit-transform-origin: center bottom;
+                transform-origin: center bottom;
+        box-shadow: 0 0 8rpx rgba(14, 16, 22, .1), 0 8rpx 16rpx rgba(14, 16, 22, .1);
+        &[data-label]:after {
+            content: attr(data-label);
+            position: absolute;
+            top: 130%;
+            padding: 8rpx 20rpx;
+            font-size: @--size-base - 3;
+            color: #767676;
+            pointer-events: none;
+            white-space: nowrap;
+            opacity: 0;
+            box-sizing: border-box;
+            .transform(translate3d(0, -50%, 0));
+            .transition(all 0.3s);
+        }
+        &--hover {
+            -webkit-transition-duration: 0s;
+                    transition-duration: 0s;
+            opacity: .8 !important;
+        }
+        .iconfont {
+            font-size: @--size-base + 10;
+            color: #767676;
+        }
+    }
+    &--opened {
+        .wuli-ani-dial__buttons {
+            visibility: visible;
+            pointer-events: auto;
+        }
+        .wuli-ani-dial__button {
+            opacity: 1;
+            -webkit-transform: translate3d(50%, 0, 0) scaleY(1);
+                    transform: translate3d(50%, 0, 0) scaleY(1);
+            -webkit-transition-delay: .1s;
+                transition-delay: .1s;
+        }
+        .wuli-ani-dial__button[data-label]:after {
+            opacity: 1;
+        }
+        .wuli-ani-dial__button:nth-child(2) {
+            -webkit-transform: translate3d(-50%, -50%, 0) scaleY(1);
+                    transform: translate3d(-50%, -50%, 0) scaleY(1);
+        }
+        .wuli-ani-dial__button:nth-child(3) {
+            -webkit-transform: translate3d(-50%, 0, 0) scaleY(1);
+                    transform: translate3d(-50%, 0, 0) scaleY(1);
+        }
+    }
+    &__top-left {
+        left: 15px;
+        top: 15px; 
+        .wuli-ani-dial__button[data-label]:after {
+            left: 60px;
+        }
+        .wuli-ani-dial__buttons {
+            bottom: inherit;
+            top: 100%;
+            margin-bottom: 0;
+            margin-top: 16px;
+        }
+    }
+    &__top-right {
+        right: 15px;
+        top: 15px;
+        .wuli-ani-dial__button[data-label]:after {
+            right: 60px;
+        }
+        .wuli-ani-dial__buttons {
+            bottom: inherit;
+            top: 100%;
+            margin-bottom: 0;
+            margin-top: 16px;
+        } 
+    }
+    &__bottom-left {
+        left: 15px;
+        bottom: 15px;
+        .wuli-ani-dial__button[data-label]:after {
+            left: 60px;
+        }
+    }
+    &__bottom-right {
+        right: 15px;
+        bottom: 15px;
+        .wuli-ani-dial__button[data-label]:after {
+            right: 60px;
+        } 
+    }
+    &__center {
+        .wuli-ani-dial__button[data-label]:after {
+            
+        } 
+    }
+}

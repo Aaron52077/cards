@@ -1,0 +1,96 @@
+<!--pages/main/case_fast/list.wxml-->
+<view class="container wuli-tap">
+    <!-- 导航分类 -->
+    <view class="wuli-tap__menu">
+        <view class="menu-item" bindtap="toggleMenu" data-menu="1">
+            <text>风格</text>
+        </view>
+        <view class="menu-item" bindtap="toggleMenu" data-menu="2">
+            <text>户型</text>
+        </view>
+        <view class="menu-item" bindtap="toggleMenu" data-menu="3">
+            <text>面积</text>
+        </view>
+    </view>
+    <scroll-view class="wuli-tap__bd" bindscrolltolower="loadMore" lower-threshold="50px"  scroll-y="true" style="height: {{ scrollHeight }}px;">
+        <block wx:for="{{ caseData }}" wx:for-item="item" wx:key="{{index}}">
+            <checkbox-group class="wuli-tap__bd--group" bindchange="checkboxHandle" data-id="{{item.id}}" data-index="{{index}}">
+                <label class="wuli-tap__item wuli-panel">
+                    <checkbox value="{{item.id}}" hidden="true" />
+                    <view class="wuli-tap__item--img">
+                        <image src="{{item.cover}}" mode="widthFix"></image>
+                    </view>
+                    <view class="wuli-tap__item--inner">
+                        <view class="wuli-tap__item--title">{{item.name}}</view>
+                        <view class="wuli-tap__item--desc">
+                            <text>风格：{{item.style}}</text>
+                            <text>户型：{{item.unit}}</text>
+                        </view>
+                    </view>
+                    <view class="wuli-tap__item--checkbox {{ item.ischecked?'is-active':'' }}">
+                        <i class="iconfont {{ item.ischecked?'icon-check':'icon-tainjia' }}"></i>
+                    </view>
+                </label>
+            </checkbox-group>
+        </block>
+          <block wx:if="{{loading}}">
+            <view class="wuli-loadmore">
+                <view class="wuli-loadmore__tips">玩命的加载中...</view>
+            </view>
+        </block>
+        <block wx:else>
+            <view class="wuli-loadmore wuli-loadmore__nodata">
+                <view class="wuli-loadmore__tips">亲，我是有底线的...</view>
+            </view>
+        </block>
+    </scroll-view>
+    <!-- 固定栏 -->
+    <view class="wuli-tap__fd wuli-popup wuli-popup__bottom {{ toggleFalg && chooseData.length ? 'wuli-popup__show' : ''}}">
+        <view class="wuli-popup__container wuli-btns">
+            <button class="wuli-btn wuli-btn__primary" catchtap="submitHandle">一键导入
+                <block wx:if="{{ chooseData.length && chooseData.length > 0 }}">
+                    <text>(已勾选：{{ chooseData.length }}项)</text>
+                </block>
+                <block wx:else>
+                   
+                </block>
+            </button>
+        </view>
+    </view>
+</view>
+<!-- 筛选项 -->
+<view class="wuli-menu wuli-popup wuli-popup__top {{ menuPopup ? 'wuli-popup__show' : ''}}">
+    <view class="wuli-popup__mask wuli-menu__mask" bindtap="closePopup"></view>
+    <view class="wuli-popup__container">
+        <block wx:if="{{ menuIndex == 1 }}">
+            <view class="wuli-menu__tags">
+                <view class="wuli-menu__tag">
+                    <text class="{{ searchCondition.style==0?'is-active':'' }}" bindtap="handleFilter" data-cmd="style" data-id="0" data-idx="1">不限</text>
+                </view>
+                <view class="wuli-menu__tag" wx:for="{{filter_style}}" wx:key="">
+                    <text class="{{ searchCondition.style==item.id?'is-active':'' }}" bindtap="handleFilter" data-cmd="style" data-id="{{item.id}}">{{item.name}}</text>
+                </view>
+            </view>
+        </block>
+        <block wx:elif="{{ menuIndex == 2 }}">
+            <view class="wuli-menu__tags">
+                <view class="wuli-menu__tag">
+                    <text class="{{ searchCondition.unit==0?'is-active':'' }}" bindtap="handleFilter" data-cmd="unit" data-id="0" data-idx="1">不限</text>
+                </view>
+                <view class="wuli-menu__tag" wx:for="{{filter_unit}}" wx:key="">
+                    <text class="{{ searchCondition.unit==item.id?'is-active':'' }}" bindtap="handleFilter" data-cmd="unit" data-id="{{item.id}}">{{item.name}}</text>
+                </view>
+            </view>
+        </block>
+        <block wx:else>
+            <view class="wuli-menu__tags">
+                <view class="wuli-menu__tag">
+                    <text class="{{ searchCondition.area==0?'is-active':'' }}" bindtap="handleFilter" data-cmd="area" data-id="0" data-idx="1">不限</text>
+                </view>
+                <view class="wuli-menu__tag" wx:for="{{filter_area}}" wx:key="">
+                    <text class="{{ searchCondition.area==item.id?'is-active':'' }}" bindtap="handleFilter" data-cmd="area" data-id="{{item.id}}">{{item.name}}</text>
+                </view>
+            </view>
+        </block>
+    </view>
+</view>

@@ -1,0 +1,41 @@
+ <!--pages/main/case_edit/upload.wxml-->
+<import src="/components/field/index.wxml" />
+<import src="/components/switch/index.wxml" />
+
+<form bindsubmit="formSubmit" bindreset="formReset">
+    <view class="container wuli-upload">
+        <view class="wuli-panel">
+            <template is="wuli-field" data="{{ ...form.title, value:title }}"></template>
+            <view class="wuli-upload__textarea">
+                <template is="wuli-field" data="{{ ...form.info, value:info }}"></template>
+                <view class="wuli-upload__bd">
+                    <view class="wuli-upload__item" wx:for="{{Atlas}}" wx:key="" >
+                        <view class="wuli-upload__item--del" bindtap="delHandle" data-index="{{index}}">
+                            <i class="iconfont icon-cha"></i> 
+                        </view>
+                        <image class="wuli-upload__item--img" src="{{item}}" mode="aspectFill" ></image>
+                    </view>
+                    <view class="wuli-upload__item">
+                        <image class="wuli-upload__item--img" bindtap='choseImage' src="/image/upload_btn.png"  mode="aspectFit"></image>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="wuli-panel wuli-upload__fd">
+            <view class="wuli-cell">
+                <view class="wuli-cell__bd">置顶</view>
+                <view class="wuli-cell__ft">
+                    <template is="wuli-switch" data="{{ ...sync, componentId: 'sync' }}" />
+                </view>
+            </view>
+            <view class="wuli-cell wuli-cell__access">
+                <view class="wuli-cell__bd">标签</view>
+                <picker class="wuli-cell__ft" bindchange="bindPickerChange" value="{{index}}" range-key='name' range="{{filter_style}}">{{filter_style[index].name}}</picker>
+            </view>
+        </view>
+    </view>
+    <!-- 固定栏 -->
+    <view class="wuli-btns wuli-btn__fixed">
+        <button class="wuli-btn wuli-btn__info {{ show ? 'wuli-btn__primary': ''}}" formType="submit">确认发布</button>
+    </view>
+</form>
