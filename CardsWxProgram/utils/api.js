@@ -1,8 +1,8 @@
-const apiURL = 'https://api.ejiadg.cn';
-const configId = 22152;//装修公司id->蜂巢营销工具集
-const uploadPath = 'https://api.ejiadg.cn/api/fc/upload/UploadPicture';
+const apiURL = 'https://api.baidu.com';
+const configId = 22152;
+const uploadPath = 'https://api.baidu.cn/api/fc/upload/UploadPicture';
 
-const uploadserverUrl = 'https://api.ejiadg.cn/upload/atlas';
+const uploadserverUrl = 'https://api.baidu.cn/upload/atlas';
 
 const wxRequest = (params, url) => {
     // wx.showLoading({
@@ -102,11 +102,11 @@ const postonLogin = (params) => {
 const postRegister = (params) => {
     wxRequest(params, `${apiURL}/api/fc/WxOpen/Register`);
 };
-//得到系统配置项目
+
 const getConfig = (params) => {
     wxRequest(params, `${apiURL}/api/wap/index/Configure?id=${configId}`);
 };
-//获取装修公司配置
+
 const getDecWxconfig = (params) => {
     wxRequest(params, `${apiURL}/api/wap/index/GetDecWxconfig?id=${configId}`);
 };
