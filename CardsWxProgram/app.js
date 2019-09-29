@@ -88,7 +88,7 @@ App({
                         data: {
                             code: resquest.code,
                             subjectId: api.configId,
-                            source: 20001//蜂巢名片
+                            source: 20001
                         },
                         success: (res) => {
                             wx.setStorageSync('fc_wxopem_sessionId', res.data.SessionId)
