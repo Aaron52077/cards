@@ -1,64 +1,64 @@
-@import '../common/_var';
-@import '../common/_mixins';
+@import "../common/_var";
+@import "../common/_mixins";
 
 .wuli-edit {
-    &__bd {
-        height: 130px;
-        width: 100%;
-        .clearfix();
+  &__bd {
+    height: 130px;
+    width: 100%;
+    .clearfix();
+  }
+  &__item {
+    float: left;
+    padding-top: 25px;
+    width: 25%;
+    text-align: center;
+    color: #282828;
+    font-size: @--size-base + 1;
+    &--icon {
+      margin: 0 auto;
+      width: 52px;
+      height: 52px;
+      .display-flex();
+      align-items: center;
+      justify-content: center;
+      background-color: @--color-white;
+      .border-radius(5px);
+      .iconfont {
+        color: #494949;
+        font-size: @--size-base * 2;
+      }
     }
-    &__item {
-        float: left;
-        padding-top: 25px;
-        width: 25%;
-        text-align: center;
-        color: #282828;
-        font-size: @--size-base + 1;
-        &--icon {
-            margin: 0 auto;
-            width: 52px;
-            height: 52px;
-            .display-flex();
-            align-items: center;
-            justify-content: center;
-            background-color: @--color-white;
-            .border-radius(5px);
-            .iconfont {
-                color: #494949;
-                font-size: @--size-base * 2;
-            }
-        }
-        &--desc {
-            padding-top: 15px;
-        }
+    &--desc {
+      padding-top: 15px;
     }
-    &__fd {
-        position: relative;
-        width: 100%;
-        height: 51px;
-        line-height: 51px;
-        text-align: center;
-        font-size: @--size-base + 2;
-        color: @--color-black;
-        background-color: #e3e3e3;
-        &::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            right: 0;
-            width: 200%;
-            height: 200%;
-            transform: scale(.5);
-            transform-origin: 0 0;
-            pointer-events: none;
-            box-sizing: border-box;
-            border: 0 solid #c3c3c3;
-            border-top-width: 1px;
-        }
+  }
+  &__fd {
+    position: relative;
+    width: 100%;
+    height: 51px;
+    line-height: 51px;
+    text-align: center;
+    font-size: @--size-base + 2;
+    color: @--color-black;
+    background-color: #e3e3e3;
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      width: 200%;
+      height: 200%;
+      transform: scale(0.5);
+      transform-origin: 0 0;
+      pointer-events: none;
+      box-sizing: border-box;
+      border: 0 solid #c3c3c3;
+      border-top-width: 1px;
     }
-    .wuli-popup__container {
-        left: 0;
-        right: 0;
-        background-color: #e3e3e3;
-    }
+  }
+  .wuli-popup__container {
+    left: 0;
+    right: 0;
+    background-color: #e3e3e3;
+  }
 }

@@ -1,52 +1,88 @@
 <!--pages/login/layer/layer.wxml-->
 <view class="container wuli-login">
-    <view class="wuli-login__wrapper">
-        <view class="wuli-login__hd">
-            <view class="wuli-login__title">{{title}}</view>
-            <view class="wuli-login__menu">
-                <view class="menu-item {{isActive == 0 ? 'is-active' : ''}}" data-menu="0" bindtap="tabToggle">登录</view>
-                <view class="menu-item {{isActive == 1 ? 'is-active' : ''}}" data-menu="1" bindtap="tabToggle">注册</view>
-            </view>
-        </view>
-        <view class="wuli-login__bd">
-            <block wx:if="{{isActive == 0}}">
-                <form bindsubmit="formSubmit" bindreset="formReset">
-                    <view class="wuli-input__item wuli-field">
-                        <input type="number" placeholder="手机号码" maxlength="11" name="tel" placeholder-class="wuli-field__placeholder" class="wuli-field__input wuli-cell__bd" />
-                    </view>
-                    <view class="wuli-input__item wuli-field">
-                        <input type="text" placeholder="密码（6-18位字母或数字）" password name="password" placeholder-class="wuli-field__placeholder" class="wuli-field__input wuli-cell__bd" />
-                    </view>
-                    <view class="wuli-input__item--password">
-                        <text catchtap="forgetHanle">忘记密码？</text>
-                    </view>
-                    <view class="wuli-login__bd--btn">
-                        <button class="wuli-btn wuli-btn__primary" formType="submit">登录</button>
-                    </view>
-                </form>
-            </block>
-            <block wx:else>
-                <form bindsubmit="formSubmit" bindreset="formReset">
-                    <view class="wuli-input__item wuli-field">
-                        <input type="number" placeholder="手机号码" maxlength="11" name="tel" placeholder-class="wuli-field__placeholder" class="wuli-field__input wuli-cell__bd" />
-                    </view>
-                    <view class="wuli-input__item wuli-field">
-                        <input type="number" placeholder="验证码" maxlength="6" name="code" placeholder-class="wuli-field__placeholder" class="wuli-field__input wuli-cell__bd" />
-                        <view class="wuli-cell__ft">
-                            <button class="wuli-btn wuli-btn__mini wuli-btn__primary">获取验证码</button>
-                        </view>
-                    </view>
-                    <view class="wuli-input__item wuli-field">
-                        <input type="text" placeholder="密码（6-18位字母或数字）" maxlength="18" password name="password" placeholder-class="wuli-field__placeholder" class="wuli-field__input wuli-cell__bd" />
-                    </view>
-                    <view class="wuli-login__bd--btn">
-                        <button class="wuli-btn wuli-btn__primary" formType="submit">登录</button>
-                    </view>
-                </form>
-            </block>
-        </view>
-        <view class="wuli-helper wuli-login__fd">
-            <view class="wuli-helper__tips" bindtap="goVersion">我是企业版用户</view>
-        </view>
+  <view class="wuli-login__wrapper">
+    <view class="wuli-login__hd">
+      <view class="wuli-login__title">{{ title }}</view>
+      <view class="wuli-login__menu">
+        <view class="menu-item {{ isActive == 0 ? 'is-active' : '' }}" data-menu="0" bindtap="tabToggle">登录</view>
+        <view class="menu-item {{ isActive == 1 ? 'is-active' : '' }}" data-menu="1" bindtap="tabToggle">注册</view>
+      </view>
     </view>
+    <view class="wuli-login__bd">
+      <block wx:if="{{ isActive == 0 }}">
+        <form bindsubmit="formSubmit" bindreset="formReset">
+          <view class="wuli-input__item wuli-field">
+            <input
+              type="number"
+              placeholder="手机号码"
+              maxlength="11"
+              name="tel"
+              placeholder-class="wuli-field__placeholder"
+              class="wuli-field__input wuli-cell__bd"
+            />
+          </view>
+          <view class="wuli-input__item wuli-field">
+            <input
+              type="text"
+              placeholder="密码（6-18位字母或数字）"
+              password
+              name="password"
+              placeholder-class="wuli-field__placeholder"
+              class="wuli-field__input wuli-cell__bd"
+            />
+          </view>
+          <view class="wuli-input__item--password">
+            <text catchtap="forgetHanle">忘记密码？</text>
+          </view>
+          <view class="wuli-login__bd--btn">
+            <button class="wuli-btn wuli-btn__primary" formType="submit">登录</button>
+          </view>
+        </form>
+      </block>
+      <block wx:else>
+        <form bindsubmit="formSubmit" bindreset="formReset">
+          <view class="wuli-input__item wuli-field">
+            <input
+              type="number"
+              placeholder="手机号码"
+              maxlength="11"
+              name="tel"
+              placeholder-class="wuli-field__placeholder"
+              class="wuli-field__input wuli-cell__bd"
+            />
+          </view>
+          <view class="wuli-input__item wuli-field">
+            <input
+              type="number"
+              placeholder="验证码"
+              maxlength="6"
+              name="code"
+              placeholder-class="wuli-field__placeholder"
+              class="wuli-field__input wuli-cell__bd"
+            />
+            <view class="wuli-cell__ft">
+              <button class="wuli-btn wuli-btn__mini wuli-btn__primary">获取验证码</button>
+            </view>
+          </view>
+          <view class="wuli-input__item wuli-field">
+            <input
+              type="text"
+              placeholder="密码（6-18位字母或数字）"
+              maxlength="18"
+              password
+              name="password"
+              placeholder-class="wuli-field__placeholder"
+              class="wuli-field__input wuli-cell__bd"
+            />
+          </view>
+          <view class="wuli-login__bd--btn">
+            <button class="wuli-btn wuli-btn__primary" formType="submit">登录</button>
+          </view>
+        </form>
+      </block>
+    </view>
+    <view class="wuli-helper wuli-login__fd">
+      <view class="wuli-helper__tips" bindtap="goVersion">我是企业版用户</view>
+    </view>
+  </view>
 </view>

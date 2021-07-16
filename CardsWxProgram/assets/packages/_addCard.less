@@ -1,82 +1,81 @@
-@import '../common/_var';
-@import '../common/_mixins';
-@import '../common/_field';
+@import "../common/_var";
+@import "../common/_mixins";
+@import "../common/_field";
 
 page {
-    background-color: #ebecf2;
+  background-color: #ebecf2;
 }
 
 .card-edit {
-    &__hd {
-
-        &-bg {
-            position: relative;
-            .display-flex();
-            align-items: center;
-            justify-content: center;
-            height: 500rpx;
-            background-color: #e3e3e3;
-        }
-        &-img {
-            width: 88rpx;
-            height: 88rpx;
-        }
-        &--btn {
-            position: absolute;
-            right: 10px;
-            bottom: 10px;
-            z-index: 11;
-        }
-        &--img {
-            width: 60rpx;
-            height: 60rpx;
-        }
+  &__hd {
+    &-bg {
+      position: relative;
+      .display-flex();
+      align-items: center;
+      justify-content: center;
+      height: 500rpx;
+      background-color: #e3e3e3;
     }
-    &__bd,
-    &__fd,
-    &__ft {
-        margin-top: 20rpx;
+    &-img {
+      width: 88rpx;
+      height: 88rpx;
     }
-    &__fd {
-        &-icon {
-            width: 138rpx;
-            height: 138rpx;
-        }
-        &-title {
-            align-items: flex-start;
-            .wuli-field__title {
-                padding-top: 4px;
-            } 
-        }
-        &-desc {
-            color: @--color-info;
-            font-size: @--size-base - 2;
-        }
+    &--btn {
+      position: absolute;
+      right: 10px;
+      bottom: 10px;
+      z-index: 11;
     }
-    &__ft {
-        height: 240rpx;
-        .wuli-field {
-            min-height: 98px;
-            align-items: flex-start;
-            &__input {
-                min-height: 98px;
-            }
-            &__title {
-                padding-top: 10px;
-            }
-        }
+    &--img {
+      width: 60rpx;
+      height: 60rpx;
     }
-    .wuli-btns {
-        margin: 52px 15px 22px;
-        .wuli-btn {
-            .border-radius(4px);
-        }
+  }
+  &__bd,
+  &__fd,
+  &__ft {
+    margin-top: 20rpx;
+  }
+  &__fd {
+    &-icon {
+      width: 138rpx;
+      height: 138rpx;
     }
+    &-title {
+      align-items: flex-start;
+      .wuli-field__title {
+        padding-top: 4px;
+      }
+    }
+    &-desc {
+      color: @--color-info;
+      font-size: @--size-base - 2;
+    }
+  }
+  &__ft {
+    height: 240rpx;
+    .wuli-field {
+      min-height: 98px;
+      align-items: flex-start;
+      &__input {
+        min-height: 98px;
+      }
+      &__title {
+        padding-top: 10px;
+      }
+    }
+  }
+  .wuli-btns {
+    margin: 52px 15px 22px;
+    .wuli-btn {
+      .border-radius(4px);
+    }
+  }
 }
 
 .card-edit__hd .wuli-uploader__img {
-    width: 100%;
-    height: 250px;
+  width: 100%;
+  height: 250px;
 }
 
 // .wuli-btn__fixed {

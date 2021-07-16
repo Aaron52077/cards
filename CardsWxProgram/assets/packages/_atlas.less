@@ -1,134 +1,134 @@
-@import '../common/_var';
-@import '../common/_mixins';
+@import "../common/_var";
+@import "../common/_mixins";
 
 // 图集列表
 page {
-    background-color: #f4f4f4;
+  background-color: #f4f4f4;
 }
 @--color-img: #efefef;
 .wuli-panel__bg {
-    padding: 15px;
-    background-color: @--color-white;
+  padding: 15px;
+  background-color: @--color-white;
 }
 .wuli-search {
-    position: relative;
-    height: 76rpx;
-    background-color: @--color-img;
-    .border-radius(2px);
-    &__input {
-        padding-left: 72rpx;
-        margin-top: 12rpx;
-        font-size: @--size-base;
-    }
-    .iconfont {
-        position: absolute;
-        left: 24rpx;
-        top: 18rpx;
-        font-size: @--size-base + 4;
-        color: #b5b5b5;
-    }
+  position: relative;
+  height: 76rpx;
+  background-color: @--color-img;
+  .border-radius(2px);
+  &__input {
+    padding-left: 72rpx;
+    margin-top: 12rpx;
+    font-size: @--size-base;
+  }
+  .iconfont {
+    position: absolute;
+    left: 24rpx;
+    top: 18rpx;
+    font-size: @--size-base + 4;
+    color: #b5b5b5;
+  }
 }
 .wuli-atlas {
+  position: relative;
+  background-color: #f4f4f4;
+  &__hd {
+    padding: 0 15px;
+    height: 38px;
+    line-height: 38px;
+    color: #4d4d4d;
+    font-size: @--size-base;
+    text-align: right;
+    font-weight: bolder;
+  }
+  &__bd {
+    margin: 0 15px;
+    .display-flex();
+    box-sizing: border-box;
+  }
+  &__item {
+    @--color-tag: #67d47b;
     position: relative;
-    background-color: #f4f4f4;
-    &__hd {
-        padding: 0 15px;
-        height: 38px;
-        line-height: 38px;
-        color: #4d4d4d;
-        font-size: @--size-base;
-        text-align: right;
-        font-weight: bolder;
+    background-color: @--color-white;
+    margin-bottom: 10px;
+    .border-radius(4px);
+    box-shadow: 0 5px 15px rgba(14, 16, 22, 0.1);
+    &--tag {
+      position: absolute;
+      left: -6rpx;
+      top: 10px;
+      padding: 3px 12px 3px 10px;
+      font-size: @--size-base - 2;
+      color: #e5f7ff;
+      background-color: @--color-tag;
+      border-top-right-radius: 8px;
+      border-bottom-right-radius: 8px;
+      &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: -7rpx;
+        width: 0;
+        height: 0;
+        border-width: 6rpx 5rpx;
+        border-style: solid;
+        border-color: #f4f4f4 @--color-tag @--color-tag #f4f4f4;
+      }
     }
-    &__bd {
-        margin: 0 15px;
-        .display-flex();
-        box-sizing: border-box;
+    &--thumb {
+      border-top-left-radius: 4px;
+      border-top-right-radius: 4px;
+      overflow: hidden;
     }
-    &__item {
-        @--color-tag: #67d47b;
-        position: relative;
-        background-color: @--color-white;
-        margin-bottom: 10px;
-        .border-radius(4px);
-        box-shadow: 0 5px 15px rgba(14, 16, 22, .1);
-        &--tag {
-            position: absolute;
-            left: -6rpx;
-            top: 10px;
-            padding: 3px 12px 3px 10px;
-            font-size: @--size-base - 2;
-            color: #e5f7ff;
-            background-color: @--color-tag;
-            border-top-right-radius: 8px;
-            border-bottom-right-radius: 8px;
-            &::after {
-                content: "";
-                position: absolute;
-                left: 0;
-                top: -7rpx;
-                width: 0;
-                height: 0;
-                border-width: 6rpx 5rpx;
-                border-style: solid;
-                border-color: #f4f4f4 @--color-tag @--color-tag #f4f4f4;
-            }
-        }
-        &--thumb {
-            border-top-left-radius: 4px;
-            border-top-right-radius: 4px;
-            overflow: hidden;
-        }
-        &--img {
-            width: 100%;
-        }
-        &--info {
-            padding: 0 10px;
-        }
-        &--title {
-            font-family: 'PingFang SC-Medium';
-            color: #282828;
-            font-size: @--size-base;
-            font-weight: bolder;
-        }
-        &--desc {
-            padding: 10px 0 5px;
-            .display-flex();
-            align-items: center;
-            .desc-tags {
-                .box-flex(1);
-                color: #989898;
-                font-size: @--size-base - 2;
-            }
-            .desc-tag {
-                display: inline-block;
-                &:first-child {
-                    margin-right: 12px;
-                }
-                .iconfont {
-                    margin-right: 3px;
-                    font-size: @--size-base;
-                }
-            }
-            .desc-edit {
-                color: #989898;
-                .iconfont {
-                    font-size: @--size-base;
-                    vertical-align: 5rpx;
-                }
-            }
-        } 
+    &--img {
+      width: 100%;
     }
-    &__left,
-    &__right {
+    &--info {
+      padding: 0 10px;
+    }
+    &--title {
+      font-family: "PingFang SC-Medium";
+      color: #282828;
+      font-size: @--size-base;
+      font-weight: bolder;
+    }
+    &--desc {
+      padding: 10px 0 5px;
+      .display-flex();
+      align-items: center;
+      .desc-tags {
         .box-flex(1);
+        color: #989898;
+        font-size: @--size-base - 2;
+      }
+      .desc-tag {
+        display: inline-block;
+        &:first-child {
+          margin-right: 12px;
+        }
+        .iconfont {
+          margin-right: 3px;
+          font-size: @--size-base;
+        }
+      }
+      .desc-edit {
+        color: #989898;
+        .iconfont {
+          font-size: @--size-base;
+          vertical-align: 5rpx;
+        }
+      }
     }
-    &__left {
-        padding-right: 5px;
-    }
-    &__right {
-        padding-left: 5px;
-    }
+  }
+  &__left,
+  &__right {
+    .box-flex(1);
+  }
+  &__left {
+    padding-right: 5px;
+  }
+  &__right {
+    padding-left: 5px;
+  }
 }
 
 // .wuli-btn__fixed {
@@ -157,13 +157,13 @@ page {
 //         }
 //         .wuli-cell::after {
 //             border: 0 none;
-//         }  
+//         }
 //     }
 //     &__bd {
 //         position: relative;
 //         min-height: 218rpx;
 //         padding: 0 15px;
-//         .clearfix(); 
+//         .clearfix();
 //     }
 //     &__item {
 //         position: relative;

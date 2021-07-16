@@ -1,56 +1,55 @@
-@import '_var';
-@import '_mixins';
+@import "_var";
+@import "_mixins";
 
 .wuli-loadmore {
-    @--line-color: #f4f4f4;
-    position: relative;
-    width: 65%;
-    margin: 21px auto;
-    line-height: 20px;
-    font-size: @--size-base;
-    text-align: center;
+  @--line-color: #f4f4f4;
+  position: relative;
+  width: 65%;
+  margin: 21px auto;
+  line-height: 20px;
+  font-size: @--size-base;
+  text-align: center;
+  vertical-align: middle;
+  &__tips {
+    display: inline-block;
     vertical-align: middle;
-    &__tips {
-        display: inline-block;
-        vertical-align: middle;
-        height: 20px;
-        line-height: 20px;
+    height: 20px;
+    line-height: 20px;
+  }
+  &__nodata,
+  &__nomore {
+    color: @--color-info;
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 200%;
+      height: 200%;
+      transform: scale(0.5);
+      transform-origin: 0 0;
+      pointer-events: none;
+      box-sizing: border-box;
+      border: 0 solid @--line-color;
+      border-top-width: 1px;
     }
-    &__nodata, 
-    &__nomore {
-        color: @--color-info;
-        &::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 200%;
-            height: 200%;
-            transform: scale(.5);
-            transform-origin: 0 0;
-            pointer-events: none;
-            box-sizing: border-box;
-            border: 0 solid @--line-color;
-            border-top-width: 1px;
-        }
+  }
+  &__nodata {
+    .wuli-loadmore__tips {
+      position: relative;
+      top: -11px;
+      padding: 0 6px;
+      z-index: 1;
     }
-    &__nodata {
-        .wuli-loadmore__tips {
-            position: relative;
-            top: -11px;
-            padding: 0 6px;
-            z-index: 1;
-        }
+  }
+  &__icon {
+    margin: 50px auto 15px;
+    .iconfont {
+      font-size: @--size-base * 4;
+      color: #999;
     }
-    &__icon {
-        margin: 50px auto 15px;
-        .iconfont {
-            font-size: @--size-base * 4;
-            color: #999;
-        }
-        + .wuli-loadmore__tips {
-            
-            color: #999;
-        }
+    + .wuli-loadmore__tips {
+      color: #999;
     }
+  }
 }

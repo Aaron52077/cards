@@ -1,28 +1,30 @@
 <!--components/atlas/list.wxml-->
 <template name="atlas-item">
-    <view class="wuli-atlas__item">
-        <view class="wuli-atlas__item--thumb" data-id="{{id}}" bindtap="goThumb">
-            <!-- widthFix 宽度不变，高度自动变化，保持原图宽高比不变 -->
-            <image class="wuli-atlas__item--img" src="{{cover}}" mode="widthFix"></image>
-            <!-- aspectFill 保持纵横比缩放图片，只保证图片的短边能完全显示出来。也就是说，图片通常只在水平或垂直方向是完整的，另一个方向将会发生截取 -->
-            <!-- <image class="wuli-atlas__item--img" src="{{cover}}" mode="aspectFill"></image> -->
-        </view>
-        <view class="wuli-atlas__item--tag">{{tags}}</view>
-        <view class="wuli-atlas__item--info">
-            <view class="wuli-atlas__item--title wuli-ellipsis__l2">{{title}}</view>
-            <view class="wuli-atlas__item--desc">
-                <view class="desc-tags">
-                    <view class="desc-tag">
-                        <i class="iconfont icon-Ftujineirong-"></i>{{count}}
-                    </view>
-                    <view class="desc-tag">
-                        <i class="iconfont icon-yanjing"></i>{{hits}}
-                    </view>
-                </view>
-                <view class="desc-edit" data-vid="{{index}}" data-id='{{id}}' wx:if="{{cur_uid==loginuid}}" catchtap="thumbHanle">
-                    <i class="iconfont icon-more"></i>
-                </view>
-            </view>
-        </view>
+  <view class="wuli-atlas__item">
+    <view class="wuli-atlas__item--thumb" data-id="{{ id }}" bindtap="goThumb">
+      <!-- widthFix 宽度不变，高度自动变化，保持原图宽高比不变 -->
+      <image class="wuli-atlas__item--img" src="{{ cover }}" mode="widthFix"></image>
+      <!-- aspectFill 保持纵横比缩放图片，只保证图片的短边能完全显示出来。也就是说，图片通常只在水平或垂直方向是完整的，另一个方向将会发生截取 -->
+      <!-- <image class="wuli-atlas__item--img" src="{{cover}}" mode="aspectFill"></image> -->
     </view>
+    <view class="wuli-atlas__item--tag">{{ tags }}</view>
+    <view class="wuli-atlas__item--info">
+      <view class="wuli-atlas__item--title wuli-ellipsis__l2">{{ title }}</view>
+      <view class="wuli-atlas__item--desc">
+        <view class="desc-tags">
+          <view class="desc-tag"> <i class="iconfont icon-Ftujineirong-"></i>{{ count }} </view>
+          <view class="desc-tag"> <i class="iconfont icon-yanjing"></i>{{ hits }} </view>
+        </view>
+        <view
+          class="desc-edit"
+          data-vid="{{ index }}"
+          data-id="{{ id }}"
+          wx:if="{{ cur_uid == loginuid }}"
+          catchtap="thumbHanle"
+        >
+          <i class="iconfont icon-more"></i>
+        </view>
+      </view>
+    </view>
+  </view>
 </template>

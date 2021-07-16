@@ -1,32 +1,32 @@
 var filter = {
-    totalPrice: function (num) {
-        return num >= 10000 ? (num / 10000).toFixed(1) + '万' : num
-    },
-    formatUrl: function (url) {
-        var imgUrl = url;
-        if (url == undefined) {
-            return "";
-        }
-        if (url.indexOf('http://') == -1) {
-            imgUrl = "http:" + url;
-        }
-        return imgUrl;
-    },
-    customReplace: function (str, val, val2) {
-        return str.replace(val, val2);
-    },
-    formatImg: function(src) {
-        if(src == "" || src == undefined) {
-            return "/image/img_default.png"
-        }else {
-            return src
-        }
+  totalPrice: function (num) {
+    return num >= 10000 ? (num / 10000).toFixed(1) + "万" : num;
+  },
+  formatUrl: function (url) {
+    var imgUrl = url;
+    if (url == undefined) {
+      return "";
     }
-}
+    if (url.indexOf("http://") == -1) {
+      imgUrl = "http:" + url;
+    }
+    return imgUrl;
+  },
+  customReplace: function (str, val, val2) {
+    return str.replace(val, val2);
+  },
+  formatImg: function (src) {
+    if (src == "" || src == undefined) {
+      return "/image/img_default.png";
+    } else {
+      return src;
+    }
+  }
+};
 
 module.exports = {
-    getTotalPrice: filter.totalPrice,
-    formatUrl: filter.formatUrl,
-    customReplace: filter.customReplace,
-    formatImg: filter.formatImg
-}
+  getTotalPrice: filter.totalPrice,
+  formatUrl: filter.formatUrl,
+  customReplace: filter.customReplace,
+  formatImg: filter.formatImg
+};

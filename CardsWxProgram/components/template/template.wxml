@@ -2,240 +2,273 @@
 <wxs module="filter" src="../../utils/filter.wxs"></wxs>
 
 <template name="wuli-atlas">
-    <view class="wuli-panel wuli-template">
-        <navigator class="wuli-cell wuli-cell__access wuli-atlas" url="/pages/main/atlas_list/list?curuid={{curuid}}" hover-class="none">
-            <view class="wuli-cell__icon iconfont icon-Ftujineirong-"></view>
-            <view class="wuli-cell__bd">图集</view>
-            <view class="wuli-cell__ft">全部</view>
-        </navigator>
-        <block wx:if="{{Ablums==null}}">
-            <view class="wuli-panel">
-                <view class="wuli-loadmore">
-                    <view class="wuli-loadmore__icon">
-                        <i class="iconfont icon-wushuju"></i>
-                    </view>
-                    <view class="wuli-loadmore__tips">暂无相关图集</view>
-                </view>
+  <view class="wuli-panel wuli-template">
+    <navigator
+      class="wuli-cell wuli-cell__access wuli-atlas"
+      url="/pages/main/atlas_list/list?curuid={{ curuid }}"
+      hover-class="none"
+    >
+      <view class="wuli-cell__icon iconfont icon-Ftujineirong-"></view>
+      <view class="wuli-cell__bd">图集</view>
+      <view class="wuli-cell__ft">全部</view>
+    </navigator>
+    <block wx:if="{{ Ablums == null }}">
+      <view class="wuli-panel">
+        <view class="wuli-loadmore">
+          <view class="wuli-loadmore__icon">
+            <i class="iconfont icon-wushuju"></i>
+          </view>
+          <view class="wuli-loadmore__tips">暂无相关图集</view>
+        </view>
+      </view>
+    </block>
+    <block wx:else>
+      <view class="wuli-panel wuli-atlas">
+        <view class="wuli-atlas__hd" bindtap="showGallery" data-current="{{ Ablums.Top.id }}">
+          <view class="wuli-atlas__hd--tag">{{ Ablums.Top.tag }}</view>
+          <image class="wuli-atlas__hd--img" src="{{ Ablums.Top.cover }}" mode="aspectFill"></image>
+          <view class="wuli-atlas__hd--inner">
+            <view class="wuli-atlas__hd--info">
+              <view class="wuli-atlas__hd--lt">{{ Ablums.Top.name }}</view>
+              <view class="wuli-atlas__hd--rt">
+                <i class="iconfont icon-Ftujineirong-"></i> {{ Ablums.Top.count }}
+              </view>
             </view>
-        </block>
-        <block wx:else>
-            <view class="wuli-panel wuli-atlas">
-                <view class="wuli-atlas__hd" bindtap="showGallery" data-current="{{Ablums.Top.id}}">
-                    <view class="wuli-atlas__hd--tag">{{Ablums.Top.tag}}</view>
-                    <image class="wuli-atlas__hd--img" src="{{Ablums.Top.cover}}" mode="aspectFill"></image>
-                    <view class="wuli-atlas__hd--inner">
-                        <view class="wuli-atlas__hd--info">
-                            <view class="wuli-atlas__hd--lt">{{Ablums.Top.name}}</view>
-                            <view class="wuli-atlas__hd--rt">
-                                <i class="iconfont icon-Ftujineirong-"></i> {{Ablums.Top.count}}
-                            </view>
-                        </view>
-                    </view>
-                </view>
-                <view class="wuli-atlas__bd" >
-                    <view class="wuli-atlas__item" wx:for="{{Ablums.Others}}" wx-for-item="item" wx:key="item.id" bindtap="showGallery" data-current="{{item.id}}">
-                        <image class="wuli-atlas__item--img" src="{{item.cover}}" mode="aspectFill"></image>
-                        <view class="wuli-atlas__item--total">{{item.count}}</view>
-                    </view>
-                </view>
-            </view>
-        </block>
-    </view>
+          </view>
+        </view>
+        <view class="wuli-atlas__bd">
+          <view
+            class="wuli-atlas__item"
+            wx:for="{{ Ablums.Others }}"
+            wx-for-item="item"
+            wx:key="item.id"
+            bindtap="showGallery"
+            data-current="{{ item.id }}"
+          >
+            <image class="wuli-atlas__item--img" src="{{ item.cover }}" mode="aspectFill"></image>
+            <view class="wuli-atlas__item--total">{{ item.count }}</view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
 </template>
 
 <template name="wuli-cases">
-    <view class="wuli-panel wuli-template">
-        <navigator class="wuli-cell wuli-cell__access wuli-cases" url="/pages/main/case_list/list?curuid={{curuid}}" hover-class="none">
-            <view class="wuli-cell__icon iconfont icon-anli"></view>
-            <view class="wuli-cell__bd">案例赏析</view>
-            <view class="wuli-cell__ft">全部</view>
-        </navigator>
-        <block wx-if="{{Cases.length==0}}">
-            <view class="wuli-loadmore">
-                <view class="wuli-loadmore__icon">
-                    <i class="iconfont icon-wushuju"></i>
-                </view>
-                <view class="wuli-loadmore__tips">这人很懒，什么也没有留下...</view>
-            </view>
-        </block>
-        <view class="wuli-cases wuli-panel" wx:for="{{Cases}}" wx-for-item="item" wx:key="index">
-            <view class="wuli-cases__item" data-id="{{item.id}}" data-isownadd="{{item.isOwnAdd}}" bindtap="goCaseDetail">
-                <view class="wuli-cases__hd">
-                    <view class="wuli-cases__item--big">
-                        <image class="img-big" src="{{item.alts[0]}}" mode="aspectFill"></image>
-                    </view>
-                    <view class="wuli-cases__item--small">
-                        <image class="img-small" src="{{filter.formatImg(item.alts[1])}}" mode="aspectFill"></image>
-                        <image class="img-small" src="{{filter.formatImg(item.alts[2])}}" mode="aspectFill"></image>
-                    </view>
-                </view>
-                <view class="wuli-cases__bd">
-                    <view class="wuli-cases__bd--inner">
-                        <view class="wuli-cases__bd--title">{{item.name}}</view>
-                        <view class="wuli-cases__bd--star">
-                            <i class="iconfont icon-xingxing"></i>
-                            <i class="iconfont icon-xingxing"></i>
-                            <i class="iconfont icon-xingxing"></i>
-                            <i class="iconfont icon-xingxing"></i>
-                            <i class="iconfont icon-xingxing"></i>
-                        </view>
-                    </view>
-                </view>
-                <view class="wuli-cases__fd">
-                    <view class="wuli-cases__bd--tags">
-                        <view class="wuli-cases__bd--tag">{{item.style}}</view>
-                        <view class="wuli-cases__bd--tag">{{item.area}}㎡</view>
-                        <view class="wuli-cases__bd--tag">{{item.unit}}</view>
-                        <view class="wuli-cases__bd--tag">￥{{item.price}}</view>
-                    </view>
-                    <view class="wuli-cases__fd--edit">
-                        <view class="wuli-cases__bd--eye">
-                            <i class="iconfont icon-yanjing"></i> {{item.hits}}</view>
-                        <!-- <i class="iconfont icon-more" catchtap=""></i> -->
-                    </view>
-                </view>
-            </view>
+  <view class="wuli-panel wuli-template">
+    <navigator
+      class="wuli-cell wuli-cell__access wuli-cases"
+      url="/pages/main/case_list/list?curuid={{ curuid }}"
+      hover-class="none"
+    >
+      <view class="wuli-cell__icon iconfont icon-anli"></view>
+      <view class="wuli-cell__bd">案例赏析</view>
+      <view class="wuli-cell__ft">全部</view>
+    </navigator>
+    <block wx-if="{{ Cases.length == 0 }}">
+      <view class="wuli-loadmore">
+        <view class="wuli-loadmore__icon">
+          <i class="iconfont icon-wushuju"></i>
         </view>
+        <view class="wuli-loadmore__tips">这人很懒，什么也没有留下...</view>
+      </view>
+    </block>
+    <view class="wuli-cases wuli-panel" wx:for="{{ Cases }}" wx-for-item="item" wx:key="index">
+      <view class="wuli-cases__item" data-id="{{ item.id }}" data-isownadd="{{ item.isOwnAdd }}" bindtap="goCaseDetail">
+        <view class="wuli-cases__hd">
+          <view class="wuli-cases__item--big">
+            <image class="img-big" src="{{ item.alts[0] }}" mode="aspectFill"></image>
+          </view>
+          <view class="wuli-cases__item--small">
+            <image class="img-small" src="{{ filter.formatImg(item.alts[1]) }}" mode="aspectFill"></image>
+            <image class="img-small" src="{{ filter.formatImg(item.alts[2]) }}" mode="aspectFill"></image>
+          </view>
+        </view>
+        <view class="wuli-cases__bd">
+          <view class="wuli-cases__bd--inner">
+            <view class="wuli-cases__bd--title">{{ item.name }}</view>
+            <view class="wuli-cases__bd--star">
+              <i class="iconfont icon-xingxing"></i>
+              <i class="iconfont icon-xingxing"></i>
+              <i class="iconfont icon-xingxing"></i>
+              <i class="iconfont icon-xingxing"></i>
+              <i class="iconfont icon-xingxing"></i>
+            </view>
+          </view>
+        </view>
+        <view class="wuli-cases__fd">
+          <view class="wuli-cases__bd--tags">
+            <view class="wuli-cases__bd--tag">{{ item.style }}</view>
+            <view class="wuli-cases__bd--tag">{{ item.area }}㎡</view>
+            <view class="wuli-cases__bd--tag">{{ item.unit }}</view>
+            <view class="wuli-cases__bd--tag">￥{{ item.price }}</view>
+          </view>
+          <view class="wuli-cases__fd--edit">
+            <view class="wuli-cases__bd--eye"> <i class="iconfont icon-yanjing"></i> {{ item.hits }}</view>
+            <!-- <i class="iconfont icon-more" catchtap=""></i> -->
+          </view>
+        </view>
+      </view>
     </view>
+  </view>
 </template>
 
 <!--在建工地-->
 <template name="wuli-sites">
-    <view class="wuli-panel wuli-template">
-        <navigator class="wuli-cell wuli-cell__access wuli-sites" url="/pages/main/master_list/list?curuid={{curuid}}" hover-class="none">
-            <view class="wuli-cell__icon iconfont icon--cg"></view>
-            <view class="wuli-cell__bd">工地直播</view>
-            <view class="wuli-cell__ft">全部</view>
-        </navigator>
-        <block wx:if="{{!Sites.length}}">
-            <view class="wuli-panel">
-                <view class="wuli-loadmore">
-                    <view class="wuli-loadmore__icon">
-                        <i class="iconfont icon-wushuju"></i>
-                    </view>
-                    <view class="wuli-loadmore__tips">暂无相关工地</view>
-                </view>
-            </view>
-        </block>
-        <block wx:else>
-            <view class="wuli-sites__item" wx:for="{{Sites}}" wx-for-item="item" wx:key="index" data-id="{{item.id}}" data-isownadd="{{item.isOwnAdd}}" bindtap="goCaseDetail">
-                <view class="wuli-sites__hd">
-                    <image class="wuli-sites__hd--img" src="{{item.cover}}" mode="aspectFill"></image>
-                    <view class="wuli-sites__hd--progress">{{item.status}}</view>
-                </view>
-                <view class="wuli-sites__bd">
-                    <view class="wuli-sites__bd--inner">
-                        <view class="wuli-sites__bd--title">{{item.name}}</view>
-                        <view class="wuli-sites__bd--time">施工：第{{item.days}}天</view>
-                    </view>
-                </view>
-                <view class="wuli-sites__fd"></view>
-            </view>
-        </block>
-    </view>
+  <view class="wuli-panel wuli-template">
+    <navigator
+      class="wuli-cell wuli-cell__access wuli-sites"
+      url="/pages/main/master_list/list?curuid={{ curuid }}"
+      hover-class="none"
+    >
+      <view class="wuli-cell__icon iconfont icon--cg"></view>
+      <view class="wuli-cell__bd">工地直播</view>
+      <view class="wuli-cell__ft">全部</view>
+    </navigator>
+    <block wx:if="{{ !Sites.length }}">
+      <view class="wuli-panel">
+        <view class="wuli-loadmore">
+          <view class="wuli-loadmore__icon">
+            <i class="iconfont icon-wushuju"></i>
+          </view>
+          <view class="wuli-loadmore__tips">暂无相关工地</view>
+        </view>
+      </view>
+    </block>
+    <block wx:else>
+      <view
+        class="wuli-sites__item"
+        wx:for="{{ Sites }}"
+        wx-for-item="item"
+        wx:key="index"
+        data-id="{{ item.id }}"
+        data-isownadd="{{ item.isOwnAdd }}"
+        bindtap="goCaseDetail"
+      >
+        <view class="wuli-sites__hd">
+          <image class="wuli-sites__hd--img" src="{{ item.cover }}" mode="aspectFill"></image>
+          <view class="wuli-sites__hd--progress">{{ item.status }}</view>
+        </view>
+        <view class="wuli-sites__bd">
+          <view class="wuli-sites__bd--inner">
+            <view class="wuli-sites__bd--title">{{ item.name }}</view>
+            <view class="wuli-sites__bd--time">施工：第{{ item.days }}天</view>
+          </view>
+        </view>
+        <view class="wuli-sites__fd"></view>
+      </view>
+    </block>
+  </view>
 </template>
 
 <template name="wuli-comments">
-    <view class="wuli-panel wuli-template">
-        <navigator class="wuli-cell wuli-cell__access" url="/pages/main/comment_list/list" hover-class="none">
-            <view class="wuli-cell__icon iconfont icon-pinglun"></view>
-            <view class="wuli-cell__bd">印象评论({{CommentCount}})</view>
-            <view class="wuli-cell__ft">全部</view>
-        </navigator>
-        <view class="wuli-comments__tags">
-            <view class="wuli-comments__tag">专业细心(10)</view>
-            <view class="wuli-comments__tag">专业细心(20)</view>
-            <view class="wuli-comments__tag">专业细心(10)</view>
-        </view>
-        <view class="wuli-comments__item">
-            <view class="wuli-comments__bd" wx:for="{{HotComments}}" wx:key="index">
-                <view class="wuli-comments__bd--info">
-                    <image class="wuli-comments__bd--avater" src="{{item.uavatar}}" mode="aspectFill"></image>
-                    <view class="wuli-comments__bd--inner">
-                        <view class="wuli-comments__item--hd">
-                            <view class="wuli-comments__item--title">{{item.uname}}</view>
-                        </view>
-                        <view class="wuli-comments__item--bd">{{item.content}}</view>
-                    </view>
-                </view>
-                <view class="wuli-comments__item--fd">
-                    <view class="wuli-comments__item--inner">
-                        <text class="wuli-comments__item--time">{{item.addtime}}</text>
-                    </view>
-                    <view class="wuli-comments__item--reply">
-                        <i class="iconfont icon-huifu1"></i>
-                    </view>
-                </view>
-                <view class="wuli-comments__reply">
-                    <view class="wuli-comments__reply--total">
-                        <view class="reply-person">天伦美,飒飒度,文儿,全文顿飒度,文儿,全文顿飒度,文儿,全文顿</view>
-                        <view class="reply-total">等{{item.SubCommentLike}}个人点赞</view>
-                    </view>
-                    <view class="wuli-comments__reply--item" wx:for="item.SubCommentList" wx:key="">
-                        <text class="reply-name">{{item.uname}}</text>
-                        <text class="reply-info">{{item.content}}</text>
-                    </view>
-                </view>
-            </view>
-            <view class="wuli-comments__fd"></view>
-        </view>
-        <navigator class="wuli-comments__btns wuli-panel" url="/pages/main/comment_edit/upload" hover-class="none">
-            <botton class="wuli-btn wuli-btn__large">
-                <i class="iconfont icon-bianji"></i>我要评论</botton>
-        </navigator>
+  <view class="wuli-panel wuli-template">
+    <navigator class="wuli-cell wuli-cell__access" url="/pages/main/comment_list/list" hover-class="none">
+      <view class="wuli-cell__icon iconfont icon-pinglun"></view>
+      <view class="wuli-cell__bd">印象评论({{ CommentCount }})</view>
+      <view class="wuli-cell__ft">全部</view>
+    </navigator>
+    <view class="wuli-comments__tags">
+      <view class="wuli-comments__tag">专业细心(10)</view>
+      <view class="wuli-comments__tag">专业细心(20)</view>
+      <view class="wuli-comments__tag">专业细心(10)</view>
     </view>
+    <view class="wuli-comments__item">
+      <view class="wuli-comments__bd" wx:for="{{ HotComments }}" wx:key="index">
+        <view class="wuli-comments__bd--info">
+          <image class="wuli-comments__bd--avater" src="{{ item.uavatar }}" mode="aspectFill"></image>
+          <view class="wuli-comments__bd--inner">
+            <view class="wuli-comments__item--hd">
+              <view class="wuli-comments__item--title">{{ item.uname }}</view>
+            </view>
+            <view class="wuli-comments__item--bd">{{ item.content }}</view>
+          </view>
+        </view>
+        <view class="wuli-comments__item--fd">
+          <view class="wuli-comments__item--inner">
+            <text class="wuli-comments__item--time">{{ item.addtime }}</text>
+          </view>
+          <view class="wuli-comments__item--reply">
+            <i class="iconfont icon-huifu1"></i>
+          </view>
+        </view>
+        <view class="wuli-comments__reply">
+          <view class="wuli-comments__reply--total">
+            <view class="reply-person">天伦美,飒飒度,文儿,全文顿飒度,文儿,全文顿飒度,文儿,全文顿</view>
+            <view class="reply-total">等{{ item.SubCommentLike }}个人点赞</view>
+          </view>
+          <view class="wuli-comments__reply--item" wx:for="item.SubCommentList" wx:key="">
+            <text class="reply-name">{{ item.uname }}</text>
+            <text class="reply-info">{{ item.content }}</text>
+          </view>
+        </view>
+      </view>
+      <view class="wuli-comments__fd"></view>
+    </view>
+    <navigator class="wuli-comments__btns wuli-panel" url="/pages/main/comment_edit/upload" hover-class="none">
+      <botton class="wuli-btn wuli-btn__large"> <i class="iconfont icon-bianji"></i>我要评论</botton>
+    </navigator>
+  </view>
 </template>
 
 <template name="wuli-companys">
-    <view class="wuli-panel wuli-template">
-        <view class="wuli-cell wuli-cell__access">
-            <view class="wuli-cell__icon iconfont icon-gongsi"></view>
-            <view class="wuli-cell__bd">企业信息</view>
-        </view>
-         <view class="wuli-companys__item wuli-panel">
-                <view class="wuli-companys__hd">
-                    <view class="wuli-companys__hd--lt">
-                        <image class="wuli-companys__hd--logo" src="{{filter.formatUrl(logo)}}" mode="aspectFit"></image>
-                    </view>
-                    <view class="wuli-companys__hd--rt">
-                        <view class="wuli-companys__hd--info">
-                            <view class="wuli-companys__hd--title">{{name}}</view>
-                        </view>
-                        <view class="wuli-companys__hd--tags">
-                            <view class="wuli-companys__hd--tag">蜂巢认证装企</view>
-                            <view class="wuli-companys__hd--tag">蜂巢SAAS采集数据</view>
-                        </view>
-                    </view>
-                </view>
-                <view class="wuli-companys__bd">
-                    <view class="wuli-companys__bd--inner">
-                        <view class="inner-tags">
-                            <view class="inner-tag">设计师数量：</view>
-                            <view class="inner-number">{{desCount}}</view>
-                        </view>
-                        <view class="inner-tags inner-center">
-                            <view class="inner-tag">工长数量：</view>
-                            <view class="inner-number">{{pmCount}}</view>
-                        </view>
-                        <view class="inner-tags">
-                            <view class="inner-tag">服务业主：</view>
-                            <view class="inner-number">{{CusCount}}</view>
-                        </view>
-                    </view>
-                </view>
-                <view class="wuli-companys__fd">
-                    <view class="wuli-companys__fd--title">{{address}}</view>
-                    <view class="wuli-companys__fd--map">
-                        <map class="setion-map" latitude="{{latitude}}" longitude="{{longitude}}" markers="{{markers}}"></map>
-                    </view>
-                    <view class="wuli-companys__fd--menu">
-                        <view class="menu-item" bindtap="Visitingline" data-latitude="{{latitude}}" data-longitude="{{longitude}}" data-name="{{name}}"
-                            data-address="{{address}}">
-                            <i class="iconfont icon-daohang"></i>导航到这里</view>
-                        <view class="menu-item" bindtap="callPhone" data-phone="{{tel}}">
-                            <i class="iconfont icon-dianhua"></i>联系电话</view>
-                    </view>
-                </view>
-            </view>
+  <view class="wuli-panel wuli-template">
+    <view class="wuli-cell wuli-cell__access">
+      <view class="wuli-cell__icon iconfont icon-gongsi"></view>
+      <view class="wuli-cell__bd">企业信息</view>
     </view>
+    <view class="wuli-companys__item wuli-panel">
+      <view class="wuli-companys__hd">
+        <view class="wuli-companys__hd--lt">
+          <image class="wuli-companys__hd--logo" src="{{ filter.formatUrl(logo) }}" mode="aspectFit"></image>
+        </view>
+        <view class="wuli-companys__hd--rt">
+          <view class="wuli-companys__hd--info">
+            <view class="wuli-companys__hd--title">{{ name }}</view>
+          </view>
+          <view class="wuli-companys__hd--tags">
+            <view class="wuli-companys__hd--tag">蜂巢认证装企</view>
+            <view class="wuli-companys__hd--tag">蜂巢SAAS采集数据</view>
+          </view>
+        </view>
+      </view>
+      <view class="wuli-companys__bd">
+        <view class="wuli-companys__bd--inner">
+          <view class="inner-tags">
+            <view class="inner-tag">设计师数量：</view>
+            <view class="inner-number">{{ desCount }}</view>
+          </view>
+          <view class="inner-tags inner-center">
+            <view class="inner-tag">工长数量：</view>
+            <view class="inner-number">{{ pmCount }}</view>
+          </view>
+          <view class="inner-tags">
+            <view class="inner-tag">服务业主：</view>
+            <view class="inner-number">{{ CusCount }}</view>
+          </view>
+        </view>
+      </view>
+      <view class="wuli-companys__fd">
+        <view class="wuli-companys__fd--title">{{ address }}</view>
+        <view class="wuli-companys__fd--map">
+          <map class="setion-map" latitude="{{ latitude }}" longitude="{{ longitude }}" markers="{{ markers }}"></map>
+        </view>
+        <view class="wuli-companys__fd--menu">
+          <view
+            class="menu-item"
+            bindtap="Visitingline"
+            data-latitude="{{ latitude }}"
+            data-longitude="{{ longitude }}"
+            data-name="{{ name }}"
+            data-address="{{ address }}"
+          >
+            <i class="iconfont icon-daohang"></i>导航到这里</view
+          >
+          <view class="menu-item" bindtap="callPhone" data-phone="{{ tel }}">
+            <i class="iconfont icon-dianhua"></i>联系电话</view
+          >
+        </view>
+      </view>
+    </view>
+  </view>
 </template>

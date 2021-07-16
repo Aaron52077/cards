@@ -1,66 +1,66 @@
-@import '../common/_var';
-@import '../common/_mixins';
+@import "../common/_var";
+@import "../common/_mixins";
 
 .tabbar {
-    box-sizing: border-box;
-    margin-top: 20rpx;
-    width: 100%;
-    .display-flex();
-    align-items: center;
-    justify-content: center;
-    padding: 0 50rpx;
-    &-item {
-        position: relative;
-        .box-flex(1);
-        text-align: center;
-        &__icon {
-            width: 104rpx;
-            height: 70rpx;
-        }
-        &__title {
-            font-size: @--size-base - 2;
-            color: #aaa;
-        }
-        &__btn {
-            position: absolute;
-            left: 37.5%;
-            bottom: 88rpx;
-            width: 172rpx;
-            text-align: center;
-            padding-left: 0;
-            padding-right: 0;
-            margin-bottom: 0;
-            box-sizing: border-box;
-            text-decoration: none;
-            text-align: center;
-            vertical-align: middle;
-            background: none;
-            opacity: 0; 
-            &-desc {
-                margin-top: 10rpx;
-                font-size: @--size-base - 2;
-                color: #aaa;
-            }
-            &::after {
-                border: 0 none;
-            }
-        }
+  box-sizing: border-box;
+  margin-top: 20rpx;
+  width: 100%;
+  .display-flex();
+  align-items: center;
+  justify-content: center;
+  padding: 0 50rpx;
+  &-item {
+    position: relative;
+    .box-flex(1);
+    text-align: center;
+    &__icon {
+      width: 104rpx;
+      height: 70rpx;
     }
-    .btn-share {
-        position: absolute;
-        left: 5%;
-        bottom: 20px;
+    &__title {
+      font-size: @--size-base - 2;
+      color: #aaa;
     }
-    .btn-msg {
-        position: absolute;
-        left: 50%;
-        bottom: 0;
-        margin-bottom: 70px;
-        .transform(translateX(-50%));
+    &__btn {
+      position: absolute;
+      left: 37.5%;
+      bottom: 88rpx;
+      width: 172rpx;
+      text-align: center;
+      padding-left: 0;
+      padding-right: 0;
+      margin-bottom: 0;
+      box-sizing: border-box;
+      text-decoration: none;
+      text-align: center;
+      vertical-align: middle;
+      background: none;
+      opacity: 0;
+      &-desc {
+        margin-top: 10rpx;
+        font-size: @--size-base - 2;
+        color: #aaa;
+      }
+      &::after {
+        border: 0 none;
+      }
     }
-    .btn-code {
-        position: absolute;
-        right: 5%;
-        bottom: 20px;
-    }
+  }
+  .btn-share {
+    position: absolute;
+    left: 5%;
+    bottom: 20px;
+  }
+  .btn-msg {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    margin-bottom: 70px;
+    .transform(translateX(-50%));
+  }
+  .btn-code {
+    position: absolute;
+    right: 5%;
+    bottom: 20px;
+  }
 }

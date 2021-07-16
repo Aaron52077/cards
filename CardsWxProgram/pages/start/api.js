@@ -1,14 +1,13 @@
-const api = require('../../utils/api.js');
+const api = require("../../utils/api.js");
 
 const GetIndexUser = (params) => {
-    api.wxTokenRequest(params, `${api.apiURL}/api/card/Folder/GetIndexUser`);
+  api.wxTokenRequest(params, `${api.apiURL}/api/card/Folder/GetIndexUser`);
 };
 
 //转发计数
 const HandelForward = (params) => {
-    api.wxTokenRequest(params, `${api.apiURL}/api/card/home/Forward`);
+  api.wxTokenRequest(params, `${api.apiURL}/api/card/home/Forward`);
 };
-
 
 //短信转发分享
 const SmsShare = (params) => {
@@ -16,7 +15,7 @@ const SmsShare = (params) => {
 };
 
 module.exports = {
-    GetIndexUser,
-    HandelForward,
-    SmsShare
+  GetIndexUser,
+  HandelForward,
+  SmsShare
 };

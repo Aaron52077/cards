@@ -1,13 +1,39 @@
 <template name="wuli-field">
-    <view class="wuli-cell wuli-field {{ error ? 'wuli-field__error' : '' }} {{ mode === 'wrapped' ? 'wuli-field__wrapped' : '' }}">
-        <view wx:if="{{ title }}" class="wuli-cell__hd wuli-field__title">{{ title }}</view>
-        <textarea wx:if="{{ type === 'textarea' }}" name="{{ name || componentId || '' }}" disabled="{{ disabled }}"
-            focus="{{ focus }}" value="{{ value }}" placeholder="{{ placeholder }}" class="wuli-field__input wuli-cell__bd {{ right ? 'wuli-field__input--right' : '' }}"
-            placeholder-class="wuli-field__placeholder" bindinput="_handleWuliFieldChange" bindfocus="_handleWuliFieldFocus" cursor-spacing="30"
-            bindblur="_handleWuliFieldBlur" data-component-id="{{ componentId || '' }}"></textarea>
-        <input wx:else type="{{ inputType || 'text' }}" name="{{ name || componentId || '' }}" disabled="{{ disabled }}" focus="{{ focus }}"
-            value="{{ value }}" placeholder="{{ placeholder }}" class="wuli-field__input wuli-cell__bd {{ right ? 'wuli-field__input--right' : '' }}"
-            placeholder-class="wuli-field__placeholder" bindinput="_handleWuliFieldChange" bindfocus="_handleWuliFieldFocus"
-            bindblur="_handleWuliFieldBlur" data-component-id="{{ componentId || '' }}" />
-    </view>
+  <view
+    class="wuli-cell wuli-field {{ error ? 'wuli-field__error' : '' }} {{
+      mode === 'wrapped' ? 'wuli-field__wrapped' : ''
+    }}"
+  >
+    <view wx:if="{{ title }}" class="wuli-cell__hd wuli-field__title">{{ title }}</view>
+    <textarea
+      wx:if="{{ type === 'textarea' }}"
+      name="{{ name || componentId || '' }}"
+      disabled="{{ disabled }}"
+      focus="{{ focus }}"
+      value="{{ value }}"
+      placeholder="{{ placeholder }}"
+      class="wuli-field__input wuli-cell__bd {{ right ? 'wuli-field__input--right' : '' }}"
+      placeholder-class="wuli-field__placeholder"
+      bindinput="_handleWuliFieldChange"
+      bindfocus="_handleWuliFieldFocus"
+      cursor-spacing="30"
+      bindblur="_handleWuliFieldBlur"
+      data-component-id="{{ componentId || '' }}"
+    ></textarea>
+    <input
+      wx:else
+      type="{{ inputType || 'text' }}"
+      name="{{ name || componentId || '' }}"
+      disabled="{{ disabled }}"
+      focus="{{ focus }}"
+      value="{{ value }}"
+      placeholder="{{ placeholder }}"
+      class="wuli-field__input wuli-cell__bd {{ right ? 'wuli-field__input--right' : '' }}"
+      placeholder-class="wuli-field__placeholder"
+      bindinput="_handleWuliFieldChange"
+      bindfocus="_handleWuliFieldFocus"
+      bindblur="_handleWuliFieldBlur"
+      data-component-id="{{ componentId || '' }}"
+    />
+  </view>
 </template>

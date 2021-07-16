@@ -1,17 +1,31 @@
 <template name="ani-button">
-    <view class="wuli-popup__mask" wx:if="{{ backdrop && opened }}"></view>
-    <view class="wuli-ani-dial {{ className }} {{ opened ? 'wuli-ani-dial--opened' : '' }}" data-opened="{{ opened }}"
-        bindtap="{{ toggle }}" wx:if="{{ visible }}">
-        <view class="wuli-ani-dial__buttons" wx:if="{{ buttons.length }}">
-            <block wx:for="{{ buttons }}" wx:key="">
-                <view class="wuli-ani-dial__button {{ item.className }}" data-index="{{ index }}" data-label="{{ item.label }}" catchtap="{{ buttonClicked }}"
-                    hover-class="wuli-ani-dial__button--hover">
-                    <i class="wuli-ani-dial__icon iconfont {{ item.icon }}"></i>
-                    <block wx:if="{{index === 2}}">
-                        <button data-name="shareBtn" class="wuli-btn__share btn-share" open-type="share" hover-class="none"></button>
-                    </block>
-                </view>
-            </block>
+  <view class="wuli-popup__mask" wx:if="{{ backdrop && opened }}"></view>
+  <view
+    class="wuli-ani-dial {{ className }} {{ opened ? 'wuli-ani-dial--opened' : '' }}"
+    data-opened="{{ opened }}"
+    bindtap="{{ toggle }}"
+    wx:if="{{ visible }}"
+  >
+    <view class="wuli-ani-dial__buttons" wx:if="{{ buttons.length }}">
+      <block wx:for="{{ buttons }}" wx:key="">
+        <view
+          class="wuli-ani-dial__button {{ item.className }}"
+          data-index="{{ index }}"
+          data-label="{{ item.label }}"
+          catchtap="{{ buttonClicked }}"
+          hover-class="wuli-ani-dial__button--hover"
+        >
+          <i class="wuli-ani-dial__icon iconfont {{ item.icon }}"></i>
+          <block wx:if="{{ index === 2 }}">
+            <button
+              data-name="shareBtn"
+              class="wuli-btn__share btn-share"
+              open-type="share"
+              hover-class="none"
+            ></button>
+          </block>
         </view>
+      </block>
     </view>
+  </view>
 </template>

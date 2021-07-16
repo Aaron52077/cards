@@ -1,60 +1,77 @@
 <!--pages/main/folder/folder.wxml-->
 <view class="container">
-    <view class="wuli-panel__bg">
-        <view class="wuli-search wuli-panel">
-            <i class="iconfont icon-search"></i>
-            <input class="wuli-search__input" confirm-type="search" placeholder="搜索" bindconfirm="bindconfirm" />
-        </view>
+  <view class="wuli-panel__bg">
+    <view class="wuli-search wuli-panel">
+      <i class="iconfont icon-search"></i>
+      <input class="wuli-search__input" confirm-type="search" placeholder="搜索" bindconfirm="bindconfirm" />
     </view>
-    <view class="wuli-folder">
-        <block wx:if="{{editFalg}}">
-            <view class="wuli-folder__edit" bindtap="editHanle">编辑</view>
+  </view>
+  <view class="wuli-folder">
+    <block wx:if="{{ editFalg }}">
+      <view class="wuli-folder__edit" bindtap="editHanle">编辑</view>
+    </block>
+    <block wx:else>
+      <view class="wuli-folder__edit">
+        <view class="wuli-folder__edit--add" catchtap="editAddHanle">增加分组</view>
+        <view class="wuli-folder__edit--end" catchtap="editEndHanle">完成</view>
+      </view>
+    </block>
+    <view class="wuli-panel" wx:if="{{ cardList !== null }}" wx:for="{{ cardList }}" wx:for-item="item" wx:key="">
+      <view
+        class="wuli-folder__del"
+        wx:if="{{ !editFalg && item.groupId != 0 }}"
+        data-itemId="{{ index }}"
+        data-id="{{ item.groupId }}"
+        bindtap="delHanle"
+      >
+        <i class="iconfont icon-wuuiconsuoxiao"></i>
+      </view>
+      <navigator
+        class="wuli-folder__item"
+        url="/pages/main/folder_list/list?id={{ item.groupId }}&name={{ item.groupname }}"
+        hover-class="none"
+      >
+        <view class="wuli-folder__item--big">
+          <image class="wuli-folder__item--first" src="{{ item.CardList[0].cardphotoMax }}" mode="aspectFill"></image>
+        </view>
+        <view class="wuli-folder__item--small">
+          <view class="small-item__bd">
+            <view class="small-item">
+              <image class="small-img" src="{{ item.CardList[1].cardphotoMax }}" mode="aspectFill"></image>
+            </view>
+            <view class="small-item">
+              <image class="small-img" src="{{ item.CardList[2].cardphotoMax }}" mode="aspectFill"></image>
+            </view>
+          </view>
+          <view class="small-item__fd">
+            <view class="small-item">
+              <image class="small-img" src="{{ item.CardList[3].cardphotoMax }}" mode="aspectFill"></image>
+            </view>
+            <view class="small-item">
+              <image class="small-img" src="{{ item.CardList[4].cardphotoMax }}" mode="aspectFill"></image>
+            </view>
+          </view>
+        </view>
+      </navigator>
+      <view class="wuli-folder__item--title">
+        <block wx:if="{{ !editFalg && item.groupId != 0 }}">
+          <input
+            class="wuli-folder__item--input"
+            value="{{ item.groupname }}"
+            bindblur="handlechangeFolder"
+            focus="{{ !item.disabled }}"
+            data-vid="{{ index }}"
+            data-id="{{ item.groupId }}"
+            bindconfirm="editTitleEndHanle"
+          />
+          <!--disabled="{{!item.disabled}}"  -->
+          <i class="iconfont icon-bianji1" data-vid="{{ index }}" bindtap="editTitleHanle"></i>
         </block>
         <block wx:else>
-            <view class="wuli-folder__edit">
-                <view class="wuli-folder__edit--add" catchtap="editAddHanle">增加分组</view>
-                <view class="wuli-folder__edit--end" catchtap="editEndHanle">完成</view>
-            </view>
+          <view class="wuli-folder__item--txt">{{ item.groupname }}</view>
+          <view class="wuli-folder__item--desc">{{ item.CardCount }}张</view>
         </block>
-        <view class="wuli-panel" wx:if="{{cardList!==null}}" wx:for="{{cardList}}" wx:for-item="item" wx:key="">
-            <view class="wuli-folder__del" wx:if="{{!editFalg && item.groupId!=0}}" data-itemId="{{index}}" data-id="{{item.groupId}}" bindtap="delHanle">
-                <i class="iconfont icon-wuuiconsuoxiao"></i>
-            </view>
-            <navigator class="wuli-folder__item" url="/pages/main/folder_list/list?id={{item.groupId}}&name={{item.groupname}}" hover-class="none">
-                <view class="wuli-folder__item--big">
-                    <image class="wuli-folder__item--first" src="{{item.CardList[0].cardphotoMax}}" mode="aspectFill"></image>
-                </view>
-                <view class="wuli-folder__item--small">
-                    <view class="small-item__bd">
-                        <view class="small-item">
-                            <image class="small-img" src="{{item.CardList[1].cardphotoMax}}" mode="aspectFill"></image>
-                        </view>
-                        <view class="small-item">
-                            <image class="small-img" src="{{item.CardList[2].cardphotoMax}}" mode="aspectFill"></image>
-                        </view>
-                    </view>
-                    <view class="small-item__fd">
-                        <view class="small-item">
-                            <image class="small-img" src="{{item.CardList[3].cardphotoMax}}" mode="aspectFill"></image>
-                        </view>
-                        <view class="small-item">
-                             <image class="small-img" src="{{item.CardList[4].cardphotoMax}}" mode="aspectFill"></image>
-                        </view>
-                    </view>
-                </view>
-            </navigator>
-            <view class="wuli-folder__item--title">
-                <block wx:if="{{!editFalg && item.groupId!=0}}">
-                    <input class="wuli-folder__item--input" value="{{item.groupname}}" bindblur="handlechangeFolder" focus="{{!item.disabled}}"  data-vid="{{index}}" data-id="{{item.groupId}}" 
-                        bindconfirm="editTitleEndHanle" />
-                        <!--disabled="{{!item.disabled}}"  -->
-                    <i class="iconfont icon-bianji1" data-vid="{{index}}" bindtap="editTitleHanle"></i>
-                </block>
-                <block wx:else>
-                    <view class="wuli-folder__item--txt">{{item.groupname}}</view>
-                    <view class="wuli-folder__item--desc">{{item.CardCount}}张</view>
-                </block>
-            </view>
-        </view>
+      </view>
     </view>
+  </view>
 </view>
